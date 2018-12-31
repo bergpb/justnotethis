@@ -1,0 +1,23 @@
+doctype html
+html
+  head
+    meta charset="utf-8"
+    title Just Do It
+    link rel="stylesheet" href="/css/bulma.min.css"
+    link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+  body
+    nav.navbar.is-primary
+      div.navbar-brand
+        a.navbar-item.has-text-black.has-text-weight-semibold href="/" Home
+        a.navbar-item.has-text-black.has-text-weight-semibold href="/new" New
+        a.navbar-item.has-text-black.has-text-weight-semibold href="/tasks" List
+    div.container.is-fluid
+      div.section
+        div.content
+          h3.has-text-centered Just Do It
+          - flash.keys.each do |type|
+              div.notification
+                button.delete
+                = flash[:notice]
+          == yield
