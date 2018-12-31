@@ -54,3 +54,5 @@ Gemfile.lock
 
 # sqlitedb
 /db/dev.db
+
+.notes

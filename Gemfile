@@ -4,8 +4,13 @@ source "https://rubygems.org"
 
 gem 'sinatra'
 gem 'slim'
-gem 'sinatra-reloader'
-gem "activerecord"
-gem "sinatra-activerecord"
-gem "rake"
+gem 'sinatra-activerecord'
+gem 'rake'
 gem 'sqlite3'
+gem 'sinatra-flash'
+gem 'bcrypt'
+
+group :development, :test do
+  gem 'sinatra-reloader'
+  gem 'byebug'
+end

@@ -1,12 +1,12 @@
-h5 New task
 form method="post" action="/new-task"
-  div.columns
-    div.column
-      input.input.is-primary type="text" name="title" placeholder="Title"
-    div.column
-      input.input.is-primary type="text" name="description" placeholder="Description"
-  div.columns.is-mobile
-    div.column.has-text-centered
-      input.button.is-primary type="submit" value="Save Task"
-    div.column.has-text-centered
-      a.button.is-primary href="/tasks" List Tasks
+  div
+    div.columns.is-mobile
+      div.column.is-10.is-offset-1
+        h5 New task
+        div.field
+          input.input.is-primary type="text" name="title" placeholder="Title"
+        div.field
+          input.input.is-primary type="text" name="description" placeholder="Description"
+    div.columns.is-mobile
+      div.column.has-text-centered
+        input.button.is-primary type="submit" value="Save Task"

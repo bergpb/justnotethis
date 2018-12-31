@@ -1,0 +1,26 @@
+- if @tasks.all.length > 0
+  h5 All tasks
+  table.table.is-striped
+    thead
+      tr
+        td.has-text-centered Title
+        td.has-text-centered Description
+        td.has-text-centered Actions
+    tbody
+      - @tasks.each do |task|
+        tr
+          td.has-text-centered = task.title
+          td.has-text-centered = task.description
+          td.has-text-centered
+            a.button.is-info href="edit/#{task.id}"
+              span.icon.has-text-default
+                i.fas.fa-edit.fa-lg
+            a.button.is-danger href="delete/#{task.id}"
+              span.icon.has-text-default
+                i.fas.fa-trash.fa-lg
+            
+  a.button.is-primary href="/new" New Task
+- else
+  p
+    | Ops! Nothing here, create a new task.
+  a.button.is-primary href="/new" New Task

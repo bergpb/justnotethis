@@ -10,8 +10,8 @@ end
 
 # get all tasks
 get '/tasks' do
-  @tasks = Task.order(id: :desc)
-  slim :tasks
+  @tasks = Task.where(user_id: session[:user_id]).order(id: :desc)
+  slim :list
 end
 
 # edit task
@@ -27,9 +27,14 @@ end
 # save task
 post '/new-task' do
   @task = Task.create(title: params[:title],
-                      description: params[:description])
-  flash[:notice] = 'Task saved.'
-  redirect '/tasks'
+              description: params[:description],
+              user_id: session[:user_id])
+  if @task.save
+    flash[:success] = 'Task saved.'
+    redirect '/tasks'
+  else
+    flash[:danger] = 'Fail to save task.'
+  end
 end
 
 # update a task
@@ -38,7 +43,7 @@ post '/edit/:id' do
 	@task.update(title: params[:title],
                description: params[:description])
 	if @task.save
-	  flash[:notice] = 'Task updated.'
+	  flash[:success] = 'Task updated.'
 	  redirect '/tasks'
 	else
 	   slim :edit
@@ -47,11 +52,11 @@ end
 
 # delete a task
 get '/delete/:id' do
-  @task = Task.find(params[:id])
-  if @task.destroy
-    flash[:notice] = 'Task removed.'
+  task = Task.find(params[:id])
+  if task.destroy
+    flash[:warning] = 'Task removed.'
     redirect '/tasks'
   else
-    flash[:notice] = 'Fail to remove task.'
+    flash[:danger] = 'Fail to remove task.'
   end
 end

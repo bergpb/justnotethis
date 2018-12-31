@@ -1,16 +1,11 @@
-h5 Edit your task
-form method="post" action="/task/#{@task.id}"
+form method="post" action="/edit/#{@task.id}"
   div.columns
-    div.column
+    div.column.is-10.is-offset-1
+      h5 Edit your task
       div.field
-        div.control
-          input.input.is-primary type="text" name="title" placeholder="Title" value="#{@task.title}"
-    div.column
+        input.input.is-primary type="text" name="title" placeholder="Title" value="#{@task.title}"
       div.field
-        div.control
-          input.input.is-primary type="text" name="description" placeholder="Description" value="#{@task.description}"
+        input.input.is-primary type="text" name="description" placeholder="Description" value="#{@task.description}"
   div.columns.is-mobile
     div.column.has-text-centered
       input.button.is-primary type="submit" value="Save Task"
-    div.column.has-text-centered
-      a.button.is-link href="/tasks" Show All Tasks
