@@ -4,17 +4,14 @@ require 'bcrypt'
 require 'sinatra/reloader'
 require 'sinatra/activerecord'
 require 'sinatra/flash'
+require './config/environments'
 
 if settings.development?
   require "byebug"
-  set :database, "sqlite3:db/dev.db"
-else
-  set :database, "sqlite3:db/production.db"
 end
 
 enable :sessions
 
-require './models/models'
-require './controllers/task'
-require './controllers/user'
-require './controllers/session'
+set :views, "./app/views"
+
+(Dir['./app/models/*.rb'].sort + Dir['./app/controllers/*.rb'].sort).each { |file| require file }

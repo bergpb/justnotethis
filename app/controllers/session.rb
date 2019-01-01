@@ -4,11 +4,11 @@ end
 
 post '/login' do
   username = params[:username]
-  user = User.find_by('username = ?', username)
-  unless user.nil?
-    if Password.new(user.password) == params[:password]
+  @user = User.find_by('username = ?', username)
+  unless @user.nil?
+    if Password.new(@user.password) == params[:password]
       flash[:success] = 'User logged.'
-      session[:user_id] = user.id
+      session[:user_id] = @user.id
       redirect '/'
     else
       flash[:warning] = 'User or password incorrect.'

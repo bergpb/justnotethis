@@ -10,7 +10,7 @@ end
 
 # get all tasks
 get '/tasks' do
-  @tasks = Task.where(user_id: session[:user_id]).order(id: :desc)
+  @tasks = User.find(session[:user_id]).tasks
   slim :list
 end
 
@@ -27,8 +27,8 @@ end
 # save task
 post '/new-task' do
   @task = Task.create(title: params[:title],
-              description: params[:description],
-              user_id: session[:user_id])
+                      description: params[:description],
+                      user_id: session[:user_id])
   if @task.save
     flash[:success] = 'Task saved.'
     redirect '/tasks'

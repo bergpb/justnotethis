@@ -6,11 +6,12 @@ gem 'sinatra'
 gem 'slim'
 gem 'sinatra-activerecord'
 gem 'rake'
-gem 'sqlite3'
 gem 'sinatra-flash'
 gem 'bcrypt'
+gem 'pg'
 
 group :development, :test do
   gem 'sinatra-reloader'
   gem 'byebug'
+  gem 'sqlite3'
 end
