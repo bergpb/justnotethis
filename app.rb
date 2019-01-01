@@ -10,8 +10,10 @@ if settings.development?
   require "byebug"
 end
 
-enable :sessions
-
 set :views, "./app/views"
 
-(Dir['./app/models/*.rb'].sort + Dir['./app/controllers/*.rb'].sort).each { |file| require file }
+enable :sessions
+
+class App < Sinatra::Base
+  (Dir['./app/models/*.rb'].sort + Dir['./app/controllers/*.rb'].sort).each { |file| require file }
+end

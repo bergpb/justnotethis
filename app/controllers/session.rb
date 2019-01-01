@@ -1,4 +1,5 @@
 get '/login' do
+  session[:user_id] = nil
   slim :session
 end
 
