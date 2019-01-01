@@ -14,6 +14,4 @@ set :views, "./app/views"
 
 enable :sessions
 
-class App < Sinatra::Base
-  (Dir['./app/models/*.rb'].sort + Dir['./app/controllers/*.rb'].sort).each { |file| require file }
-end
+(Dir['./app/models/*.rb'].sort + Dir['./app/controllers/*.rb'].sort).each { |file| require file }
