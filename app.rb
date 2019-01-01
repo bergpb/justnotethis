@@ -1,13 +1,13 @@
 require 'sinatra'
 require 'slim'
 require 'bcrypt'
-require 'sinatra/reloader'
 require 'sinatra/activerecord'
 require 'sinatra/flash'
 require './config/environments'
 
 if settings.development?
   require "byebug"
+  require 'sinatra/reloader'
 end
 
 set :views, "./app/views"
