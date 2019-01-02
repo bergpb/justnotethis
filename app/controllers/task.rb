@@ -10,25 +10,15 @@ end
 
 # get all tasks
 get '/tasks' do
-  @tasks = User.find(session[:user_id]).tasks
+  @tasks = current_user.tasks
   slim :list
-end
-
-# edit task
-get '/edit/:id' do
-  @task = Task.find(params[:id])
-  unless @task.nil? # if return false do this
-    slim :edit
-  else
-    redirect '/tasks'
-  end
 end
 
 # save task
 post '/new-task' do
-  @task = Task.create(title: params[:title],
-                      description: params[:description],
-                      user_id: session[:user_id])
+  @task = current_user.task.create(title: params[:title],
+                                    description: params[:description],
+                                    user_id: session[:user_id])
   if @task.save
     flash[:success] = 'Task saved.'
     redirect '/tasks'
@@ -37,9 +27,20 @@ post '/new-task' do
   end
 end
 
+# edit task
+get '/edit/:id' do
+  @task = current_user.tasks.find_by_id(params[:id])
+  unless @task.nil?
+    slim :edit
+  else
+    flash[:warning] = 'Task dont exists.'
+    redirect '/tasks'
+  end
+end
+
 # update a task
 post '/edit/:id' do
-	@task = Task.find(params[:id])
+	@task = current_user.tasks.find_by_id(params[:id])
 	@task.update(title: params[:title],
                description: params[:description])
 	if @task.save
@@ -52,7 +53,7 @@ end
 
 # delete a task
 get '/delete/:id' do
-  task = Task.find(params[:id])
+  task = current_user.task.find_by_id(params[:id])
   if task.destroy
     flash[:warning] = 'Task removed.'
     redirect '/tasks'
