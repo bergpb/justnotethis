@@ -11,7 +11,7 @@ html
     nav.navbar.is-primary
       div.navbar-brand
         a.navbar-item.has-text-black.has-text-weight-semibold href="/" JustDoIt
-        - if session[:user_id].nil?
+        - if current_user.nil?
             a.navbar-item.has-text-black.has-text-weight-semibold href="/login" Login
         - else
             a.navbar-item.has-text-black.has-text-weight-semibold href="/new" New
@@ -20,7 +20,6 @@ html
     div.container.is-fluid
       div.section
         div.content
-          h3.has-text-centered Just Do It
           - flash.keys.each do |type|
               div[class="notification is-#{type}"]
                 button.delete

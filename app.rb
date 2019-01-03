@@ -1,8 +1,9 @@
-require 'sinatra'
 require 'slim'
 require 'bcrypt'
-require 'sinatra/activerecord'
+require 'sinatra'
+require 'sinatra/base'
 require 'sinatra/flash'
+require 'sinatra/activerecord'
 require './config/environments'
 
 if settings.development?
@@ -11,19 +12,16 @@ if settings.development?
 end
 
 set :views, "./app/views"
-
 enable :sessions
-
-(Dir['./app/models/*.rb'].sort + Dir['./app/controllers/*.rb'].sort).each { |file| require file }
 
 # 404 Error!
 not_found do
   status 404
-  slim :index
+  slim :not_found
 end
 
 # 500 Error!
 error 500 do
   status 500
-  slim :index
+  slim :server_error
 end
