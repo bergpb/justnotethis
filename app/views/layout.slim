@@ -3,7 +3,7 @@ html
   head
     meta charset="utf-8"
     title Just Do It
-    meta name="viewport" content="width=device-width, initial-scale=1.0"
+    meta content="width=device-width, initial-scale=1.0" name="viewport"
     link rel="stylesheet" href="/css/bulma.min.css"
     link rel="stylesheet" href="/css/custom.css"
     link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
@@ -20,10 +20,9 @@ html
             a.navbar-item.has-text-black.has-text-weight-semibold href="/logout" Logout
     div.container.is-fluid
       div.section
-        div.content
-          - flash.keys.each do |type|
-              div[class="notification is-#{type}"]
-                button.delete
-                = flash.values.first
-          == yield
+        - flash.keys.each do |type|
+            div[class="notification is-#{type}"]
+              button.delete
+              = flash.values.first
+        == yield
   script src="/js/custom.js"
