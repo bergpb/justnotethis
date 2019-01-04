@@ -9,15 +9,19 @@
     tbody
       - @tasks.each do |task|
         tr
-          td.has-text-centered = task.title
-          td.has-text-centered = task.description
+          td.has-text-centered
+            span class=(task.active == false ? 'line-through' : '')
+              = task.title
+          td.has-text-centered
+            span class=(task.active == false ? 'line-through' : '')
+              = task.description
           td.has-text-centered
             a.button.is-info href="edit/#{task.id}"
               span.icon.has-text-default
                 i.fas.fa-edit
-            a.button.is-danger href="delete/#{task.id}"
+            a.button.is-danger href="complete/#{task.id}"
               span.icon.has-text-default
-                i.fas.fa-trash
+                i.fas.fa-check-circle
             
   a.button.is-primary href="/new" New Task
 - else

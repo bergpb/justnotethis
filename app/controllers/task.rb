@@ -7,7 +7,7 @@ get '/new' do
 end
 
 get '/tasks' do
-  @tasks = current_user.tasks
+  @tasks = current_user.tasks.order(created_at: :desc)
   slim :list
 end
 
@@ -41,6 +41,18 @@ post '/edit/:id' do
 	  flash[:success] = 'Task updated.'
 	  redirect '/tasks'
 	else
+	   slim :edit
+	end
+end
+
+get '/complete/:id' do
+  @task = current_user.tasks.find_by_id(params[:id])
+	@task.update(active: false)
+	if @task.save
+	  flash[:success] = 'Task updated.'
+	  redirect '/tasks'
+	else
+	   flash[:success] = 'Fail to mark task with complete.'
 	   slim :edit
 	end
 end
