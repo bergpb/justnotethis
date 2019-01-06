@@ -1,6 +1,9 @@
 get '/login' do
-  session[:user_id] = nil
-  slim :session
+  if user_signed_in?
+    redirect '/'
+  else
+    slim :session
+  end
 end
 
 post '/login' do

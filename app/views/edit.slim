@@ -1,11 +1,10 @@
 form method="post" action="/edit/#{@task.id}"
-  div.columns
-    div.column.is-10.is-offset-1
-      h5 Edit your task
-      div.field
-        input.input.is-primary type="text" name="title" placeholder="Title" value="#{@task.title}"
-      div.field
-        input.input.is-primary type="text" name="description" placeholder="Description" value="#{@task.description}"
-  div.columns.is-mobile
+  div.columns.is-desktop
+    div.column.is-4.is-offset-4
+      div.title.is-4 Edit Your Task
+      div.field: input.input.is-primary type="text" name="title" placeholder="Title" value="#{@task.title}"
+      div.field: textarea.textarea.is-primary name="description" placeholder="Description"
+        = @task.description
+  div.columns.is-desktop
     div.column.has-text-centered
       input.button.is-primary type="submit" value="Save Task"
