@@ -16,11 +16,11 @@
             span class=(task.active == false ? 'line-through' : '')
               = task.description.slice(0..10) + ' ...'
           td.has-text-centered
-            a.button.is-primary href="show/#{task.id}"
+            a.button.is-primary href="/show/#{task.id}"
               i.fas.fa-eye
-            a.button.is-warning href="edit/#{task.id}"
+            a.button.is-warning href="/edit/#{task.id}"
               i.fas.fa-edit
-            a.button.is-info disabled=(task.active == false ? true : false) href="complete/#{task.id}"
+            a.button.is-info disabled=(task.active == false ? true : false) href="/complete/#{task.id}"
               i.fas class=(task.active == false ? 'fa-check' : 'fa-check-circle')
   a.button.is-primary href="/new" New Task
 - else
