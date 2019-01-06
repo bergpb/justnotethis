@@ -10,5 +10,4 @@ User.create(username: 'admin' , email: 'admin@gmail.com', password: 'admin')
   Task.create(title: NewGirl.character , description: NewGirl.quote , user_id: 1, active: true)
 end
 
-puts "Finished."
-
+puts "Seed finished."
