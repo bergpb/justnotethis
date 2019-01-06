@@ -7,17 +7,11 @@ get '/login' do
 end
 
 post '/login' do
-  username = params[:username]
-  user = User.find_by('username = ?', username)
-  unless user.nil?
-    if BCrypt::Password.new(user.password) == params[:password]
-      session[:user_id] = user.id
-      flash[:success] = 'User logged.'
-      redirect '/'
-    else
-      flash[:warning] = 'User or password incorrect.'
-      redirect '/login'
-    end
+  user = User.find_by('username = ?', params[:username])
+  if user && user.authenticate(params[:password])
+    session[:user_id] = user.id
+    flash[:success] = 'User logged.'
+    redirect '/'
   else
     flash[:warning] = 'User or password incorrect.'
     redirect '/login'

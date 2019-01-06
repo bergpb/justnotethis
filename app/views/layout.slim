@@ -37,10 +37,12 @@ html
     section.section
       div.container
         div.content
-          - flash.keys.each do |type|
-            div[class="notification is-#{type}"]
-              button.delete
-              = flash.values.first
+          .columns.is-desktop
+            .column.is-4.is-offset-4
+              - flash.keys.each do |type|
+                div[class="notification is-#{type}"]
+                  button.delete
+                  = flash.values.first
           == yield
   script src="/js/jquery-3.3.1.min.js"
   script src="/js/custom.js"

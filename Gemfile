@@ -15,4 +15,5 @@ group :development, :test do
   gem 'byebug'
   gem 'sqlite3'
   gem 'slim_lint'
+  gem 'faker'
 end

@@ -6,20 +6,30 @@ def user_signed_in?
   session[:user_id].present?
 end
 
+get '/' do
+  @username = current_user.username if current_user
+  slim :index
+end
+
 get '/register' do
   slim :register
 end
 
 post '/register' do
-  password = BCrypt::Password.create(params[:password])
-  user = User.new(username: params[:username],
-                     email: params[:email],
-                     password: password)
-  if user.save
-    flash[:success] = 'User registred.'
-    redirect '/login'
+  if params[:password] == params[:check_password]
+    user = User.new(username: params[:username],
+                    email: params[:email],
+                    password: params[:password])
+    if user.save
+      flash[:success] = 'User registred.'
+      redirect '/login'
+    else
+      flash[:danger] = 'Fail to save user.'
+      redirect '/register'
+    end
   else
-    flash[:danger] = 'Fail to save user.'
+    flash[:danger] = 'Check your passwords.'
+    redirect '/register'
   end
 end
 

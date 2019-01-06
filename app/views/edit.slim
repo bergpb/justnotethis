@@ -5,6 +5,8 @@ form method="post" action="/edit/#{@task.id}"
       div.field: input.input.is-primary type="text" name="title" placeholder="Title" value="#{@task.title}"
       div.field: textarea.textarea.is-primary name="description" placeholder="Description"
         = @task.description
+      label.checkbox: input type="checkbox" name="active" checked=(@task.active)
+        | &nbsp; Define task with active?
   div.columns.is-desktop
     div.column.has-text-centered
       input.button.is-primary type="submit" value="Save Task"

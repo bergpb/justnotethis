@@ -1,2 +1,7 @@
-h4.title.is-4 Hello to Just Do It!
-p Just save your tasks in new our list your saved tasks.
+h4.title.is-4 Hello #{@username} to Just Do It!
+p Just save your tasks in new, our list your saved tasks.
+- unless user_signed_in?
+  p
+    ' Please
+    a href="/login" login
+    '  to access app.

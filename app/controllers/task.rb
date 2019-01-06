@@ -1,7 +1,3 @@
-get '/' do
-  slim :index
-end
-
 get '/new' do
   if user_signed_in?
     slim :new
@@ -64,10 +60,10 @@ get '/edit/:id' do
 end
 
 post '/edit/:id' do
-  byebug
 	@task = current_user.tasks.find_by_id(params[:id])
 	@task.update(title: params[:title],
-               description: params[:description])
+               description: params[:description],
+               active: params[:active] == "on" ? true : false)
 	if @task.save
 	  flash[:success] = 'Task updated.'
 	  redirect '/tasks'
