@@ -1,4 +1,4 @@
-- if @tasks.all.length > 0
+- if !@tasks.all.empty?
   h4.title.is-4 All tasks
   .columns.is-multiline
     - @tasks.each do |task|
@@ -15,7 +15,7 @@
               i.fas.fa-eye color="green"
             a.card-footer-item href="/edit/#{task.id}"
               i.fas.fa-edit
-            a.card-footer-item.is-info disabled=(task.active == false ? true : false) href="/complete/#{task.id}"
+            a.card-footer-item.is-info disabled=(task.active == false) href="/complete/#{task.id}"
               i.fas class=(task.active == false ? 'fa-check' : 'fa-check-circle')
         br
   a.button.is-primary href="/new" New Task

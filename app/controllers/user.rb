@@ -24,7 +24,7 @@ post '/register' do
       flash[:success] = 'User registred.'
       redirect '/login'
     else
-      flash[:danger] = 'Fail to save user.'
+      flash[:warning] = 'Check form data.'
       redirect '/register'
     end
   else
@@ -33,7 +33,6 @@ post '/register' do
   end
 end
 
-get '/change_password' do
-  tasks = Task.order(id: :desc)
-  slim :list
+get '/forgot_password' do
+  
 end
