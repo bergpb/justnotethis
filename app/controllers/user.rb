@@ -12,10 +12,10 @@ end
 
 post '/register' do
   password = BCrypt::Password.create(params[:password])
-  user = User.create(username: params[:username],
+  user = User.new(username: params[:username],
                      email: params[:email],
                      password: password)
-  unless user.nil?
+  if user.save
     flash[:success] = 'User registred.'
     redirect '/login'
   else

@@ -1,12 +1,16 @@
 form method="post" action="/login"
-  div
-    div.columns.is-mobile
-      div.column.is-10.is-offset-1
-        h5 Login
-        div.field
-          input.input.is-primary type="text" name="username" placeholder="Username"
-        div.field
-          input.input.is-primary type="password" name="password" placeholder="password"
-    div.columns.is-mobile
-      div.column.has-text-centered
-        input.button.is-primary type="submit" value="Login"
+  div.columns.is-desktop
+    div.column.is-4.is-offset-4
+      div.title.is-4 Login
+      div.field
+        input.input.is-primary type="text" name="username" placeholder="Username"
+      div.field
+        input.input.is-primary type="password" name="password" placeholder="password"
+  div.columns.is-desktop
+    div.column.has-text-centered.is-4.is-offset-4
+      a href="/register" Register
+      span &nbsp; | &nbsp;
+      a href="/forgot_password" Forgot Password
+  div.columns.is-desktop
+    div.column.has-text-centered
+      input.button.is-primary type="submit" value="Login"

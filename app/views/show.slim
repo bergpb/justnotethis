@@ -1,0 +1,12 @@
+div.title.is-4 Show Task
+p
+  strong Task: #{@task.title}
+  br
+  strong Description: #{@task.description}
+div.columns.is-mobile
+  div.column
+    a.button.is-info href="edit/#{@task.id}" Edit Task
+  div.column
+    a.button.is-danger href="delete/#{@task.id}" Delete Task
+  div.column
+    a.button.is-success href="/tasks" Back

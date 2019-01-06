@@ -14,4 +14,5 @@ group :development, :test do
   gem 'sinatra-reloader'
   gem 'byebug'
   gem 'sqlite3'
+  gem 'slim_lint'
 end

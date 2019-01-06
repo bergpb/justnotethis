@@ -9,10 +9,13 @@ require './config/environments'
 if settings.development?
   require "byebug"
   require 'sinatra/reloader'
+  set :bind, '0.0.0.0'
 end
 
 set :views, "./app/views"
 enable :sessions
+
+Dir.glob('./app/{models,helpers,controllers,views}/*.rb').each { |file| require file }
 
 # 404 Error!
 not_found do

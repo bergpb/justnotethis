@@ -1,6 +1,6 @@
 - if @tasks.all.length > 0
-  h5 All tasks
-  table.table.is-striped
+  h4.title.is-4 All tasks
+  table.table.is-hoverable.is-fullwidth
     thead
       tr
         td.has-text-centered Title
@@ -9,16 +9,19 @@
     tbody
       - @tasks.each do |task|
         tr
-          td.has-text-centered = task.title
-          td.has-text-centered = task.description
           td.has-text-centered
-            a.button.is-info href="edit/#{task.id}"
-              span.icon.has-text-default
-                i.fas.fa-edit
-            a.button.is-danger href="delete/#{task.id}"
-              span.icon.has-text-default
-                i.fas.fa-trash
-            
+            span class=(task.active == false ? 'line-through' : '')
+              = task.title
+          td.has-text-centered
+            span class=(task.active == false ? 'line-through' : '')
+              = task.description.slice(0..10) + ' ...'
+          td.has-text-centered
+            a.button.is-primary href="show/#{task.id}"
+              i.fas.fa-eye
+            a.button.is-warning href="edit/#{task.id}"
+              i.fas.fa-edit
+            a.button.is-info disabled=(task.active == false ? true : false) href="complete/#{task.id}"
+              i.fas class=(task.active == false ? 'fa-check' : 'fa-check-circle')
   a.button.is-primary href="/new" New Task
 - else
   p

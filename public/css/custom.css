@@ -1,0 +1,7 @@
+.line-through {
+  text-decoration: line-through;
+}
+
+div > .content{
+  margin-top: 30px;
+}
