@@ -2,6 +2,10 @@
   text-decoration: line-through;
 }
 
-div > .content{
+.container{
   margin-top: 30px;
+}
+
+.c-tags{
+  margin-bottom: 40px;
 }

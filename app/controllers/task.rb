@@ -1,13 +1,23 @@
-get '/' do
-  slim :index
-end
-
 get '/new' do
   if user_signed_in?
     slim :new
   else
     flash[:warning] = 'Please login.'
     redirect '/login'
+  end
+end
+
+post '/new' do
+  @task = Task.new(title: params[:title],
+                  description: params[:description],
+                  user_id: current_user.id)
+  if @task.valid?
+    @task.save
+    flash[:success] = 'Task saved.'
+    redirect '/tasks'
+  else
+    flash[:warning] = 'Check form data.'
+    redirect '/new'
   end
 end
 
@@ -25,23 +35,6 @@ get '/show/:id' do
   if user_signed_in?
     @task = current_user.tasks.find_by_id(params[:id])
     slim :show
-  else
-    flash[:warning] = 'Please login.'
-    redirect '/login'
-  end
-end
-
-post '/new' do
-  if user_signed_in?
-    task = Task.new(title: params[:title],
-                    description: params[:description],
-                    user_id: current_user.id)
-    if task.save
-      flash[:success] = 'Task saved.'
-      redirect '/tasks'
-    else
-      flash[:danger] = 'Fail to save task.'
-    end
   else
     flash[:warning] = 'Please login.'
     redirect '/login'
@@ -66,11 +59,14 @@ end
 post '/edit/:id' do
   @task = current_user.tasks.find_by_id(params[:id])
 	@task.update(title: params[:title],
-               description: params[:description])
-	if @task.save
+               description: params[:description],
+               active: params[:active] == "on" ? true : false)
+	if @task.valid?
+	  @task.save
 	  flash[:success] = 'Task updated.'
 	  redirect '/tasks'
 	else
+	   flash[:warning] = 'Check form data.'
 	   slim :edit
 	end
 end
@@ -95,7 +91,7 @@ end
 get '/delete/:id' do
   if user_signed_in?
     task = current_user.tasks.find_by_id(params[:id])
-    unless task.nil?
+    if !task.nil?
       task.destroy
       if task.destroyed?
         flash[:warning] = 'Task removed.'
