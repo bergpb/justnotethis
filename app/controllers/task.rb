@@ -57,10 +57,10 @@ get '/edit/:id' do
 end
 
 post '/edit/:id' do
-	@task = current_user.tasks.find_by_id(params[:id])
+  @task = current_user.tasks.find_by_id(params[:id])
 	@task.update(title: params[:title],
-              description: params[:description],
-              active: params[:active] == "on" ? true : false)
+               description: params[:description],
+               active: params[:active] == "on" ? true : false)
 	if @task.valid?
 	  @task.save
 	  flash[:success] = 'Task updated.'

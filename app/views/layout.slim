@@ -17,23 +17,15 @@ html
       .navbar-menu id="navbar-menu"
         .navbar-end
           - if current_user.nil?
-            a.navbar-item.has-text-black.has-text-weight-semibold href="/login"
+            a.navbar-item.has-text-black.has-text-weight-semibold href="/login" title="Login"
               i.fas.fa-sign-in-alt
-              span
-                '  Login
           - else
-              a.navbar-item.has-text-black.has-text-weight-semibold href="/new"
+              a.navbar-item.has-text-black.has-text-weight-semibold href="/new" title="Add Task"
                 i.fas.fa-plus
-                span
-                  '  New Task
-              a.navbar-item.has-text-black.has-text-weight-semibold href="/tasks"
+              a.navbar-item.has-text-black.has-text-weight-semibold href="/tasks" title="List Tasks"
                 i.fas.fa-list-ul
-                span
-                  '  List Tasks
-              a.navbar-item.has-text-black.has-text-weight-semibold href="/logout"
+              a.navbar-item.has-text-black.has-text-weight-semibold href="/logout" title="Logout"
                 i.fas.fa-sign-out-alt
-                span
-                  '  Logout
     section.section
       .container
         .content

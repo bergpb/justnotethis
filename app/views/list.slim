@@ -10,6 +10,8 @@
           .card-content
             .content
               span class=(task.active == false ? 'line-through' : '') = task.description
+            .content.c-tags
+              span.tag.is-success.is-pulled-right = task.created_at.strftime("%B %d, %Y")
           footer.card-footer
             a.card-footer-item href="/show/#{task.id}"
               i.fas.fa-eye color="green"

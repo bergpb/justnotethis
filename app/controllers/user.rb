@@ -28,7 +28,7 @@ post '/register' do
       redirect '/register'
     end
   else
-    flash[:danger] = 'Check your passwords.'
+    flash[:danger] = 'Passwords don\'t match.'
     redirect '/register'
   end
 end
