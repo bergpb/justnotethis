@@ -1,7 +1,19 @@
-h4.title.is-4 Hello #{@username} to Just Do It!
-p Just save your tasks in new, our list your saved tasks.
-- unless user_signed_in?
+- if !user_signed_in?
+  h4.title.is-4 Hello to Just Do It!
   p
     ' Please
     a href="/login" login
+    '  to access your tasks.
+  p
+    ' Don't have a login, just
+    a href="/register" register
     '  to access app.
+- else
+  h4.title.is-4 Hello @#{@username} to Just Do It!
+  - if @uncomplete_tasks > 0
+    p
+      ' You have
+      strong #{@uncomplete_tasks} uncompleted tasks
+      ' , go to
+      a href='/tasks'  list
+      '  to see.

@@ -7,6 +7,7 @@ def user_signed_in?
 end
 
 get '/' do
+  @uncomplete_tasks = Task.where(active: true).length
   @username = current_user.username if current_user
   slim :index
 end
@@ -34,5 +35,5 @@ post '/register' do
 end
 
 get '/forgot_password' do
-  
+
 end

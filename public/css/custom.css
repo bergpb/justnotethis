@@ -9,3 +9,15 @@
 .c-tags{
   margin-bottom: 40px;
 }
+
+.navbar-burger{
+  color: black !important;
+}
+
+.ico-color{
+  color: teal
+}
+
+.card {
+  border-radius: 10px;
+}

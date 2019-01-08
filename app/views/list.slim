@@ -1,24 +1,27 @@
 - if !@tasks.all.empty?
   h4.title.is-4 All tasks
-  .columns.is-multiline
+  .columns.is-mobile.is-multiline
     - @tasks.each do |task|
-      .column.is-4
+      .column.is-3-desktop.is-4-tablet.is-12-mobile
         .card
           header.card-header
             p.card-header-title
-              span class=(task.active == false ? 'line-through' : '') = task.title
+              span class=(task.active == false ? 'line-through' : '')
+                = task.title
           .card-content
             .content
-              span class=(task.active == false ? 'line-through' : '') = task.description
+              span class=(task.active == false ? 'line-through' : '')
+                == task.description.gsub(/\r/, '</br>')
             .content.c-tags
-              span.tag.is-success.is-pulled-right = task.created_at.strftime("%B %d, %Y")
+              span.tag.is-success.is-pulled-right
+                = task.created_at.strftime('%B %d, %Y')
           footer.card-footer
             a.card-footer-item href="/show/#{task.id}"
-              i.fas.fa-eye color="green"
+              i.fas.fa-eye.ico-color
             a.card-footer-item href="/edit/#{task.id}"
-              i.fas.fa-edit
+              i.fas.fa-edit.ico-color
             a.card-footer-item.is-info disabled=(task.active == false) href="/complete/#{task.id}"
-              i.fas class=(task.active == false ? 'fa-check' : 'fa-check-circle')
+              i.fas.ico-color class=(task.active == false ? 'fa-check' : 'fa-check-circle')
         br
   a.button.is-primary href="/new" New Task
 - else

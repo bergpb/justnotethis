@@ -1,13 +1,20 @@
 .title.is-4 Show Task
-p
-  strong Task: #{@task.title}
-  br
-  strong Description: #{@task.description}
-br
-.columns.is-mobile
-  .column
-    a.button.is-info href="/edit/#{@task.id}" Edit Task
-  .column
-    a.button.is-danger href="/delete/#{@task.id}" Delete Task
-  .column
-    a.button.is-success href="/tasks" Back
+.card
+  header.card-header
+    p.card-header-title
+      span class=(@task.active == false ? 'line-through' : '')
+        = @task.title
+  .card-content
+    .content
+      span class=(@task.active == false ? 'line-through' : '')
+        == @task.description.gsub(/\r/, '</br>')
+    .content.c-tags
+      span.tag.is-success.is-pulled-right
+        = @task.created_at.strftime('%B %d, %Y')
+  footer.card-footer
+    a.card-footer-item.is-info href="/tasks"
+      i.fas.fa-arrow-left.has-text-warning
+    a.card-footer-item href="/edit/#{@task.id}"
+      i.fas.fa-edit.has-text-info
+    a.card-footer-item href="/delete/#{@task.id}"
+      i.fas.fa-trash.has-text-danger

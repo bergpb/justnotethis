@@ -2,7 +2,7 @@ get '/login' do
   if user_signed_in?
     redirect '/'
   else
-    slim :session
+    slim :login
   end
 end
 
