@@ -95,13 +95,12 @@ get '/delete/:id' do
       task.destroy
       if task.destroyed?
         flash[:warning] = 'Task removed.'
-        redirect '/tasks'
       else
         flash[:warning] = 'Fail to remove task.'
         redirect '/tasks'
       end
     else
-      flash[:danger] = 'Task dont exists.'
+      flash[:danger] = 'Task don\'t exists.'
       redirect '/tasks'
     end
   else

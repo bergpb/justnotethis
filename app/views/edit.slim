@@ -1,6 +1,6 @@
 form method="post" action="/edit/#{@task.id}"
-  .columns.is-desktop
-    .column.is-4.is-offset-4
+  .columns.is-mobile
+    .column.is-4-desktop.is-offset-4-desktop.is-6-tablet.is-offset-3-tablet.is-10-mobile.is.is-offset-1-mobile
       .title.is-4 Edit Your Task
       .field
         input.input.is-primary type="text" name="title" placeholder="Title" value="#{@task.title}"
