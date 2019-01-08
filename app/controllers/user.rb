@@ -6,12 +6,6 @@ def user_signed_in?
   session[:user_id].present?
 end
 
-get '/' do
-  @uncomplete_tasks = Task.where(active: true).length
-  @username = current_user.username if current_user
-  slim :index
-end
-
 get '/register' do
   slim :register
 end

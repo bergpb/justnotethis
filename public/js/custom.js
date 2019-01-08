@@ -9,3 +9,44 @@ $(document).ready(function() {
     $(".navbar-menu").toggleClass("is-active");
   });
 });
+
+function switchNav(path){
+  switch (path) {
+  case '/': $('#home').addClass('is-active');
+    break;
+  case '/login': $('#login').addClass('is-active');
+    break;
+  case '/new': $('#new').addClass('is-active');
+    break;
+  case '/tasks': $('#tasks').addClass('is-active');
+    break;
+  }
+}
+
+function showToast(text, type){
+  swal({});
+  const toast = swal.mixin({
+    toast: true,
+    position: 'top-right',
+    showConfirmButton: false,
+    timer: 3000
+  });
+  toast({
+    type: type,
+    title: text
+  });
+}
+
+function showSwLink(title, type, showCancel, textConfirm, colorConfirm, link){
+  swal({
+    title: title,
+    type: type,
+    showCancelButton: showCancel,
+    confirmButtonText: textConfirm,
+    confirmButtonColor: colorConfirm,
+  }).then((result) => {
+    if (result.value){
+      window.location.href = link;
+    }
+  });
+}
