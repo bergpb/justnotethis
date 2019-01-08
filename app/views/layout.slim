@@ -4,9 +4,11 @@ html
     title Just Do It
     meta content="width=device-width, initial-scale=1.0" name="viewport"
     link rel="stylesheet" href="/css/bulma.min.css"
+    link rel="stylesheet" href="/css/sweetalert2.min.css"
     link rel="stylesheet" href="/css/custom.css"
     link rel="stylesheet" href="/css/fontawesome/css/all.min.css"
     script src="/js/jquery-3.3.1.min.js"
+    script src="/js/sweetalert2.all.min.js"
     script src="/js/custom.js"
   body
     nav.navbar.is-primary.is-fixed-top role="navigation" aria-label="main navigation"
@@ -35,18 +37,9 @@ html
     section.section
       .container
         .content
-          .columns.is-desktop
-            .column.is-4.is-offset-8
-              - flash.keys.each do |type|
-                div[class="notification is-#{type}"]
-                  button.delete
-                  = flash.values.first
+          - flash.keys.each do |type|
+            javascript:
+              showToast("#{flash.values.first}", "#{type}");
           == yield
     javascript:
-      let color = 'is-active';
-      switch (window.location.pathname) {
-        case '/': $('#home').addClass(color); break;
-        case '/login': $('#login').addClass(color); break;
-        case '/new': $('#new').addClass(color); break;
-        case '/tasks': $('#tasks').addClass(color);break;
-        }
+      switchNav(window.location.pathname)

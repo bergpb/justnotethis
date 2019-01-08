@@ -2,22 +2,26 @@
   text-decoration: line-through;
 }
 
-.container{
+.container {
   margin-top: 30px;
 }
 
-.c-tags{
+.c-tags {
   margin-bottom: 40px;
 }
 
-.navbar-burger{
+.navbar-burger {
   color: black !important;
 }
 
-.ico-color{
+.ico-color {
   color: teal
 }
 
 .card {
   border-radius: 10px;
+}
+
+.swal2-toast {
+  margin-top: 50px;
 }
