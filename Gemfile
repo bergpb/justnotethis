@@ -8,12 +8,17 @@ gem 'sinatra-activerecord'
 gem 'rake'
 gem 'sinatra-flash'
 gem 'bcrypt'
-gem 'pg'
+
+group :production, :test do
+  gem 'pg'
+end
 
 group :development, :test do
+  gem "standard"
   gem 'sinatra-reloader'
   gem 'byebug'
   gem 'sqlite3'
   gem 'slim_lint'
   gem 'faker'
+  gem 'rubocop'
 end
