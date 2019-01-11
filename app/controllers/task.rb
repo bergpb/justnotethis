@@ -14,7 +14,7 @@ post '/new' do
   if @task.valid?
     @task.save
     flash[:success] = 'Task saved.'
-    redirect '/tasks'
+    redirect '/list'
   else
     flash[:warning] = 'Check form data.'
     redirect '/new'
@@ -51,7 +51,7 @@ get '/edit/:id' do
       slim :edit
     else
       flash[:warning] = 'Task dont exists.'
-      redirect '/tasks'
+      redirect '/list'
     end
   else
     flash[:warning] = 'Please login.'
@@ -67,7 +67,7 @@ post '/edit/:id' do
 	if @task.valid?
 	  @task.save
 	  flash[:success] = 'Task updated.'
-	  redirect '/tasks'
+	  redirect '/list'
 	else
 	   flash[:warning] = 'Check form data.'
 	   slim :edit
@@ -80,7 +80,7 @@ get '/complete/:id' do
   	@task.update(active: false)
   	if @task.save
   	  flash[:success] = 'Task updated.'
-  	  redirect '/tasks'
+  	  redirect '/list'
   	else
   	   flash[:success] = 'Fail to mark task with complete.'
   	   slim :edit
@@ -98,14 +98,14 @@ get '/delete/:id' do
       task.destroy
       if task.destroyed?
         flash[:success] = 'Task removed.'
-        redirect '/tasks'
+        redirect '/list'
       else
         flash[:danger] = 'Fail to remove task.'
-        redirect '/tasks'
+        redirect '/list'
       end
     else
       flash[:warning] = 'Task don\'t exists.'
-      redirect '/tasks'
+      redirect '/list'
     end
   else
     flash[:warning] = 'Please login.'

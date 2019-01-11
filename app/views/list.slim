@@ -3,10 +3,9 @@
     .column.is-6
       h4.title.is-4 All tasks
     .column.is-6
-      a.button.is-success.is-pulled-right href="/new" New Task
   .columns.is-mobile.is-multiline
     - @tasks.each do |task|
-      .column.is-3-desktop.is-4-tablet.is-12-mobile
+      .column.is-3-desktop.is-4-tablet.is-10-mobile.is-offset-1-mobile
         .card
           header.card-header
             p.card-header-title
@@ -24,11 +23,11 @@
                 = task.created_at.strftime('%B %d, %Y')
           footer.card-footer
             a.card-footer-item href="/show/#{task.id}"
-              i.fas.fa-eye.ico-color
+              i.fas.fa-eye.has-text-success
             a.card-footer-item href="/edit/#{task.id}"
-              i.fas.fa-edit.ico-color
+              i.fas.fa-edit.has-text-info
             a.card-footer-item.is-info disabled=(task.active == false) href="/complete/#{task.id}"
-              i.fas.ico-color class=(task.active == false ? 'fa-check' : 'fa-check-circle')
+              i.fas.has-text-warning class=(task.active == false ? 'fa-check' : 'fa-check-circle')
         br
 - else
   p
