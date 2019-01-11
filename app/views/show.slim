@@ -1,6 +1,6 @@
 .title.is-4 Show Task
 .columns.is-mobile
-  .column.is-4-desktop.is-offset-4-desktop.is-6-tablet.is-offset-3-tablet.is-12-mobile
+  .column.is-4-desktop.is-offset-4-desktop.is-6-tablet.is-offset-3-tablet.is-10-mobile.is-offset-1-mobile
     .card
       header.card-header
         p.card-header-title
@@ -14,7 +14,7 @@
           span.tag.is-success.is-pulled-right
             = @task.created_at.strftime('%B %d, %Y')
       footer.card-footer
-        a.card-footer-item.is-info href="/tasks"
+        a.card-footer-item.is-info href="/list"
           i.fas.fa-arrow-left.has-text-warning
         a.card-footer-item href="/edit/#{@task.id}"
           i.fas.fa-edit.has-text-info
