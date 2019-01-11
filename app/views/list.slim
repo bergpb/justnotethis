@@ -1,5 +1,9 @@
 - if !@tasks.all.empty?
-  h4.title.is-4 All tasks
+  .columns.is-mobile
+    .column.is-6
+      h4.title.is-4 All tasks
+    .column.is-6
+      a.button.is-success.is-pulled-right href="/new" New Task
   .columns.is-mobile.is-multiline
     - @tasks.each do |task|
       .column.is-3-desktop.is-4-tablet.is-12-mobile
@@ -11,7 +15,10 @@
           .card-content
             .content
               span class=(task.active == false ? 'line-through' : '')
-                == task.description.gsub(/\r/, '</br>')
+                - if task.description.length > 150
+                  == task.description.slice(0..150) + '...'
+                - else
+                  == task.description
             .content.c-tags
               span.tag.is-success.is-pulled-right
                 = task.created_at.strftime('%B %d, %Y')
@@ -23,7 +30,6 @@
             a.card-footer-item.is-info disabled=(task.active == false) href="/complete/#{task.id}"
               i.fas.ico-color class=(task.active == false ? 'fa-check' : 'fa-check-circle')
         br
-  a.button.is-primary href="/new" New Task
 - else
   p
     | Ops! Nothing here, create a new task.

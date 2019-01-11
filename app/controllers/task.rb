@@ -21,9 +21,12 @@ post '/new' do
   end
 end
 
-get '/tasks' do
+get '/list' do
   if user_signed_in?
     @tasks = current_user.tasks.order(created_at: :desc)
+    @tasks.each do |task|
+      task.description = task.description.gsub(/\r/, '</br>')
+    end
     slim :list
   else
     flash[:warning] = 'Please login.'
