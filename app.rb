@@ -1,15 +1,15 @@
 require 'slim'
 require 'bcrypt'
 require 'sinatra'
-require 'sinatra/base'
 require 'sinatra/flash'
+require 'sinatra/cookies'
+require 'sinatra/multi_route'
 require 'sinatra/activerecord'
 require './config/environments'
 
 if settings.development?
   require "byebug"
   require 'sinatra/reloader'
-  set :bind, '0.0.0.0'
 end
 
 set :views, "./app/views"

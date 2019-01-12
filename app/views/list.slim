@@ -8,16 +8,14 @@
       .column.is-3-desktop.is-4-tablet.is-10-mobile.is-offset-1-mobile
         .card
           header.card-header
-            p.card-header-title
-              span class=(task.active == false ? 'line-through' : '')
-                = task.title
+            p.card-header-title class=(task.active == false ? 'line-through' : '')
+              = task.title
           .card-content
-            .content
-              span class=(task.active == false ? 'line-through' : '')
-                - if task.description.length > 150
-                  == task.description.slice(0..150) + '...'
-                - else
-                  == task.description
+            .content class=(task.active == false ? 'line-through' : '')
+              - if task.description.length > 150
+                == task.description.slice(0..150) + '...'
+              - else
+                == task.description
             .content.c-tags
               span.tag.is-success.is-pulled-right
                 = task.created_at.strftime('%B %d, %Y')
