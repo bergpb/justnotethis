@@ -18,7 +18,7 @@ function switchNav(path){
     break;
   case '/new': $('#new').addClass('is-active');
     break;
-  case '/tasks': $('#tasks').addClass('is-active');
+  case '/list': $('#list').addClass('is-active');
     break;
   }
 }
