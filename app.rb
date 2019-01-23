@@ -7,7 +7,7 @@ require 'sinatra/activerecord'
 require './config/environments'
 
 if settings.development?
-  require "byebug"
+  require 'byebug'
   require 'sinatra/reloader'
 end
 
