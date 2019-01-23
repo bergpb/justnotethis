@@ -12,10 +12,11 @@
               = task.title
           .card-content
             .content class=(task.active == false ? 'line-through' : '')
-              - if task.description.length > 150
-                == task.description.slice(0..150) + '...'
-              - else
-                == task.description
+              p.description
+                - if task.description.length > 150
+                  == task.description.slice(0..150) + '...'
+                - else
+                  == task.description
             .content.c-tags
               span.tag.is-success.is-pulled-right
                 = task.created_at.strftime('%B %d, %Y')
