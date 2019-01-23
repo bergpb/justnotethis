@@ -8,12 +8,11 @@
       .column.is-3-desktop.is-4-tablet.is-10-mobile.is-offset-1-mobile
         .card
           header.card-header
-            p.card-header-title
-              span class=(task.active == false ? 'line-through' : '')
-                = task.title
+            p.card-header-title class=(task.active == false ? 'line-through' : '')
+              = task.title
           .card-content
-            .content
-              span class=(task.active == false ? 'line-through' : '')
+            .content class=(task.active == false ? 'line-through' : '')
+              p.description
                 - if task.description.length > 150
                   == task.description.slice(0..150) + '...'
                 - else

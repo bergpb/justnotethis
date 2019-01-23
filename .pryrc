@@ -1,4 +1,4 @@
-require './app'
+load './app.rb'
 
 # dont print object after operation
 Pry.config.print = proc { |output, value| output.puts "=> #{value.inspect}" }

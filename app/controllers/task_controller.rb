@@ -1,23 +1,24 @@
-get '/new' do
-  if user_signed_in?
-    slim :new
-  else
-    flash[:warning] = 'Please login.'
-    redirect '/login'
-  end
-end
-
-post '/new' do
-  @task = Task.new(title: params[:title],
-                  description: params[:description],
-                  user_id: current_user.id)
-  if @task.valid?
-    @task.save
-    flash[:success] = 'Task saved.'
-    redirect '/list'
-  else
-    flash[:warning] = 'Check form data.'
-    redirect '/new'
+route :get, :post, '/new' do
+  method = request.env["REQUEST_METHOD"]
+  if method == "GET"
+    if user_signed_in?
+      slim :new
+    else
+      flash[:warning] = 'Please login.'
+      redirect '/login'
+    end
+  elsif method == "POST"
+    @task = Task.new(title: params[:title],
+                     description: params[:description],
+                     user_id: current_user.id)
+    if @task.valid?
+      @task.save
+      flash[:success] = 'Task saved.'
+      redirect '/list'
+    else
+      flash[:warning] = 'Check form data.'
+      redirect '/new'
+    end
   end
 end
 
@@ -44,34 +45,35 @@ get '/show/:id' do
   end
 end
 
-get '/edit/:id' do
-  if user_signed_in?
-    @task = current_user.tasks.find_by_id(params[:id])
-    unless @task.nil?
-      slim :edit
+route :get, :post, '/edit/:id' do
+  method = request.env["REQUEST_METHOD"]
+  if method == "GET"
+    if user_signed_in?
+      @task = current_user.tasks.find_by_id(params[:id])
+      unless @task.nil?
+        slim :edit
+      else
+        flash[:warning] = 'Task dont exists.'
+        redirect '/list'
+      end
     else
-      flash[:warning] = 'Task dont exists.'
-      redirect '/list'
+      flash[:warning] = 'Please login.'
+      redirect '/login'
     end
-  else
-    flash[:warning] = 'Please login.'
-    redirect '/login'
+  elsif method == "POST"
+    @task = current_user.tasks.find_by_id(params[:id])
+  	@task.update(title: params[:title],
+                 description: params[:description],
+                 active: params[:active] == "on" ? true : false)
+  	if @task.valid?
+  	  @task.save
+  	  flash[:success] = 'Task updated.'
+  	  redirect '/list'
+  	else
+  	   flash[:warning] = 'Check form data.'
+  	   slim :edit
+  	end
   end
-end
-
-post '/edit/:id' do
-  @task = current_user.tasks.find_by_id(params[:id])
-	@task.update(title: params[:title],
-               description: params[:description],
-               active: params[:active] == "on" ? true : false)
-	if @task.valid?
-	  @task.save
-	  flash[:success] = 'Task updated.'
-	  redirect '/list'
-	else
-	   flash[:warning] = 'Check form data.'
-	   slim :edit
-	end
 end
 
 get '/complete/:id' do

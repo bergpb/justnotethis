@@ -2,13 +2,14 @@ require 'slim'
 require 'bcrypt'
 require 'sinatra'
 require 'sinatra/flash'
+require 'sinatra/cookies'
+require 'sinatra/multi_route'
 require 'sinatra/activerecord'
 require './config/environments'
 
 if settings.development?
   require "byebug"
   require 'sinatra/reloader'
-  set :bind, '0.0.0.0'
 end
 
 Dir.glob(File.dirname(__FILE__) + '/app/{models,helpers,controllers,views}/*.rb').each { |file| require file }
