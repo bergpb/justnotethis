@@ -2,23 +2,24 @@
 
 source "https://rubygems.org"
 
-gem 'sinatra'
-gem 'slim'
-gem 'sinatra-activerecord'
-gem 'rake'
-gem 'sinatra-flash'
 gem 'bcrypt'
+gem 'rake'
+gem 'sinatra'
+gem 'sinatra-contrib'
+gem 'sinatra-activerecord'
+gem 'sinatra-flash'
+gem 'slim'
 
 group :production, :test do
   gem 'pg'
 end
 
 group :development, :test do
-  gem "standard"
-  gem 'sinatra-reloader'
   gem 'byebug'
-  gem 'sqlite3'
-  gem 'slim_lint'
   gem 'faker'
   gem 'rubocop'
+  gem 'sinatra-reloader'
+  gem 'slim_lint'
+  gem 'sqlite3'
+  gem 'standard'
 end
