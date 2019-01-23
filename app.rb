@@ -2,7 +2,6 @@ require 'slim'
 require 'bcrypt'
 require 'sinatra'
 require 'sinatra/flash'
-require 'sinatra/cookies'
 require 'sinatra/multi_route'
 require 'sinatra/activerecord'
 require './config/environments'
@@ -17,7 +16,7 @@ Dir.glob(File.dirname(__FILE__) + '/app/{models,helpers,controllers,views}/*.rb'
 set :root, File.dirname(__FILE__)
 set :views, Proc.new { File.join(root, 'app/views') }
 enable :sessions
-  
+
 # 404 Error!
 not_found do
   status 404
