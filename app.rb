@@ -2,7 +2,6 @@ require 'slim'
 require 'bcrypt'
 require 'sinatra'
 require 'sinatra/flash'
-require 'sinatra/multi_route'
 require 'sinatra/activerecord'
 require './config/environments'
 
