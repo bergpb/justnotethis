@@ -8,7 +8,7 @@
             = @task.title
       .card-content
         .content
-          span class=(@task.active == false ? 'line-through' : '')
+          p.description class=(@task.active == false ? 'line-through' : '')
             == @task.description.gsub(/\r/, '</br>')
         .content.c-tags
           span.tag.is-success.is-pulled-right
