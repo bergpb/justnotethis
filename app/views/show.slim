@@ -1,6 +1,6 @@
-.title.is-4 Show Task
+.title.is-4 Show note:
 .columns.is-mobile
-  .column.is-4-desktop.is-offset-4-desktop.is-6-tablet.is-offset-3-tablet.is-10-mobile.is-offset-1-mobile
+  .column.is-4-desktop.is-offset-4-desktop.is-6-tablet.is-offset-3-tablet.is-12-mobile
     .card
       header.card-header
         p.card-header-title
@@ -14,12 +14,15 @@
           span.tag.is-success.is-pulled-right
             = @task.created_at.strftime('%B %d, %Y')
       footer.card-footer
-        a.card-footer-item.is-info href="/list"
-          i.fas.fa-arrow-left.has-text-warning
         a.card-footer-item href="/edit/#{@task.id}"
           i.fas.fa-edit.has-text-info
         a#btn-delete.card-footer-item
           i.fas.fa-trash.has-text-danger
+
+.columns.is-mobile.has-text-centered
+  .column.is-12-desktop.is-12-tablet.is-12-mobile
+    a.button.is-info href="/list"
+      | Back
 
 javascript:
   $(function(){
