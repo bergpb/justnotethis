@@ -1,19 +1,16 @@
 - if !user_signed_in?
-  h4.title.is-4 Hello to Just Do It!
+  h4.title.is-4 Hello to JustNoteThis!
   p
     ' Please
     a href="/login" login
-    '  to access your tasks.
+    '  to access your notes.
   p
-    ' Don't have a login, just
+    ' Don't have a login? Just
     a href="/register" register
     '  to access app.
 - else
-  h4.title.is-4 Hello @#{@username} to Just Do It!
-  - if @uncomplete_tasks > 0
+  h4.title.is-4 Hello @#{@username}!
+  - if @not_seen_notes > 0
     p
       ' You have
-      strong #{@uncomplete_tasks} uncompleted tasks
-      ' , go to
-      a href='/list'  list
-      '  to see.
+      strong #{@not_seen_notes} not seen notes.

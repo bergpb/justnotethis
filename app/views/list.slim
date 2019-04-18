@@ -1,11 +1,10 @@
 - if !@tasks.all.empty?
   .columns.is-mobile
     .column.is-6
-      h4.title.is-4 All tasks
-    .column.is-6
+      h4.title.is-4 All notes:
   .columns.is-mobile.is-multiline
     - @tasks.each do |task|
-      .column.is-3-desktop.is-4-tablet.is-10-mobile.is-offset-1-mobile
+      .column.is-3-desktop.is-4-tablet.is-12-mobile
         .card
           header.card-header
             p.card-header-title class=(task.active == false ? 'line-through' : '')
@@ -22,11 +21,15 @@
                 = task.created_at.strftime('%B %d, %Y')
           footer.card-footer
             a.card-footer-item href="/show/#{task.id}"
-              i.fas.fa-eye.has-text-success
+              i.fas.fa-eye.has-text-info
             a.card-footer-item href="/edit/#{task.id}"
-              i.fas.fa-edit.has-text-info
-            a.card-footer-item.is-info disabled=(task.active == false) href="/complete/#{task.id}"
-              i.fas.has-text-warning class=(task.active == false ? 'fa-check' : 'fa-check-circle')
+              i.fas.fa-edit.has-text-link
+            - if task.active
+              a.card-footer-item href="/complete/#{task.id}"
+                i.fas.has-text-warning.fa-check-circle
+            - else
+              div.card-footer-item
+                i.fas.has-text-primary.fa-check
         br
 - else
   p

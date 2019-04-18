@@ -1,5 +1,5 @@
 get '/' do
-  @uncomplete_tasks = Task.where(active: true).length
+  @not_seen_notes = Task.where(active: true).length
   @username = current_user.username if current_user
   slim :index
 end

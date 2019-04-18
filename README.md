@@ -1,6 +1,6 @@
-### Just Do It
+### JustNoteThis
 
-- A To do list app made with Ruby and Sinatra.
+- A note app made with Ruby and Sinatra.
 
 Instructions:
 - Clone this app,
