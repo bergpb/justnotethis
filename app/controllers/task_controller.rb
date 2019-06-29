@@ -24,7 +24,7 @@ end
 
 get '/list' do
   if user_signed_in?
-    @tasks = current_user.tasks.order(created_at: :desc)
+    @tasks = current_user.tasks.paginate(:page => params[:page], :per_page => 8).order(created_at: :desc)
     @tasks.each do |task|
       task.description = task.description.gsub(/\r/, '</br>')
     end

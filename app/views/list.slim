@@ -31,6 +31,8 @@
               div.card-footer-item
                 i.fas.has-text-primary.fa-check
         br
+  div
+    == will_paginate @tasks, renderer: BulmaPagination::Sinatra, class: ''
 - else
   p
     | Ops! Nothing here, create a new task.

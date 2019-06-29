@@ -5,10 +5,12 @@ require 'sinatra/flash'
 require 'sinatra/multi_route'
 require 'sinatra/activerecord'
 require './config/environments'
+require 'will_paginate'
+require 'will_paginate/active_record'
+require 'will_paginate-bulma'
 
 if settings.development?
   require 'byebug'
-  require 'sinatra/reloader'
 end
 
 Dir.glob(File.dirname(__FILE__) + '/app/{models,helpers,controllers,views}/*.rb').each { |file| require file }
