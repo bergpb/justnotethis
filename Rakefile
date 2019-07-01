@@ -3,6 +3,6 @@ require "standard/rake"
 require "sinatra/activerecord/rake"
 
 desc "run server"
-task :server do
-  sh "ruby app.rb"
+task :serve do
+  sh "shotgun --port=4567 app.rb"
 end
