@@ -34,15 +34,13 @@ GEM
       rack
     rainbow (3.0.0)
     rake (13.0.1)
-    rubocop (0.75.1)
+    rubocop (0.76.0)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
       parser (>= 2.6)
       rainbow (>= 2.2.2, < 4.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 1.7)
-    rubocop-performance (1.5.1)
-      rubocop (>= 0.71.0)
     ruby-progressbar (1.10.1)
     shotgun (0.9.2)
       rack (>= 1.0)
@@ -71,9 +69,8 @@ GEM
       slim (>= 3.0, < 5.0)
       sysexits (~> 1.1)
     sqlite3 (1.4.1)
-    standard (0.1.6)
-      rubocop (~> 0.75.0)
-      rubocop-performance (~> 1.5.0)
+    standard (0.0.36)
+      rubocop (>= 0.63)
     sysexits (1.2.0)
     temple (0.8.2)
     thread_safe (0.3.6)
@@ -102,6 +99,9 @@ DEPENDENCIES
   slim_lint
   sqlite3
   standard
+
+RUBY VERSION
+   ruby 2.5.7p206
 
 BUNDLED WITH
    1.17.3
