@@ -9,8 +9,6 @@ gem 'sinatra-contrib'
 gem 'sinatra-activerecord'
 gem 'sinatra-flash'
 gem 'slim'
-gem 'will_paginate', '~> 3.1.0'
-gem "will_paginate-bulma", :git => 'https://github.com/bergpb/will_paginate-bulma.git'
 
 group :production, :test do
   gem 'pg'

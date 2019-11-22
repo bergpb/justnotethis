@@ -2,10 +2,16 @@ form method="post" action="/login"
   .columns.is-mobile
     .column.is-4-desktop.is-offset-4-desktop.is-6-tablet.is-offset-3-tablet.is-10-mobile.is.is-offset-1-mobile
       .title.is-4 Login
-      .field: input.input.is-primary type="text" name="username" placeholder="Username"
-      .field: input.input.is-primary type="password" name="password" placeholder="Password"
-      input.button.is-primary.is-fullwidth type="submit" value="Login"
+      .field.control.has-icons-left.has-icons-right
+        input.input.is-primary type="text" name="username" placeholder="Username"
+        span.icon.is-small.is-left: i.fas.fa-user
+      .field.control.has-icons-left.has-icons-right
+        input.input.is-primary type="password" name="password" placeholder="Password"
+        span.icon.is-small.is-left: i.fas.fa-lock
   .columns.is-mobile.has-text-centered
     .column
-      a href="/register" Register
-      '  |  Forgot Password
+      input.button.is-primary type="submit" value="Login"
+  .columns.is-mobile.has-text-centered
+    .column
+      a.small href="/register" Register
+      span.small  |  Forgot Password

@@ -1,17 +1,17 @@
 form method="post" action="/edit/#{@task.id}"
   .columns.is-mobile
     .column.is-4-desktop.is-offset-4-desktop.is-6-tablet.is-offset-3-tablet.is-12-mobile
-      .title.is-4 Edit note:
+      .title.is-4 Edit task:
       .field
         input.input.is-primary type="text" name="title" placeholder="Title" value="#{@task.title}"
       .field
         textarea.textarea.is-primary name="description" placeholder="Description"
           = @task.description
       label.checkbox: input type="checkbox" name="active" checked=@task.active
-        | &nbsp; Note is enabled?
+        | &nbsp; Task is enabled?
   .columns.is-mobile.has-text-centered
     .column.is-2-desktop.is-offset-4-desktop.is-4-tablet.is-offset-2-tablet.is-6-mobile
-      input.button.is-primary type="submit" value="Save Note"
+      input.button.is-primary type="submit" value="Save Task"
     .column.is-2-desktop.is-4-tablet.is-6-mobile
       a.button.is-info href="/list"
         | Back

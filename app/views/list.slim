@@ -1,7 +1,7 @@
 - if !@tasks.all.empty?
   .columns.is-mobile
     .column.is-6
-      h4.title.is-4 All notes:
+      h4.title.is-4 All tasks:
   .columns.is-mobile.is-multiline
     - @tasks.each do |task|
       .column.is-3-desktop.is-4-tablet.is-12-mobile
@@ -31,8 +31,6 @@
               div.card-footer-item
                 i.fas.has-text-primary.fa-check
         br
-  div
-    == will_paginate @tasks, renderer: BulmaPagination::Sinatra, class: ''
 - else
   p
     | Ops! Nothing here, create a new task.

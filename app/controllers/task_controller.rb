@@ -1,3 +1,10 @@
+get '/' do
+  @not_completed_tasks = Task.where(active: true).length
+  @completed_tasks = Task.where(active: false).length
+  @username = current_user.username if current_user
+  slim :index
+end
+
 route :get, :post, '/new' do
   method = request.env["REQUEST_METHOD"]
   if method == "GET"
@@ -24,7 +31,7 @@ end
 
 get '/list' do
   if user_signed_in?
-    @tasks = current_user.tasks.paginate(:page => params[:page], :per_page => 8).order(created_at: :desc)
+    @tasks = Task.all().order(created_at: :desc)
     @tasks.each do |task|
       task.description = task.description.gsub(/\r/, '</br>')
     end

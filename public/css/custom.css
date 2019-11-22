@@ -26,14 +26,10 @@
   border-radius: 10px;
 }
 
-.pagination > ul {
-  list-style: none !important;
-}
-
 .swal2-container {
   margin-top: 50px;
 }
 
-.pagination-list{
-  margin-top:  0px !important;
+.small {
+  font-size: 12px;
 }
