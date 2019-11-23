@@ -11,7 +11,7 @@ gem 'sinatra-activerecord'
 gem 'sinatra-flash'
 gem 'slim'
 
-group :production, :test do
+group :production do
   gem 'pg'
 end
 
