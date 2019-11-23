@@ -11,6 +11,6 @@ Instructions:
 
 Generating a new migration:
 - ```rake db:create_migration NAME=name_of_migration```,
-- Open file created in db/migrate,
+- Edit file created in db/migrate/,
 - Run: ```rake db:migrate```,
 

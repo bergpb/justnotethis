@@ -12,8 +12,8 @@
           .card-content
             .content class=(task.active == false ? 'line-through' : '')
               p.description
-                - if task.description.length > 150
-                  == task.description.slice(0..150) + '...'
+                - if task.description.length > 100
+                  == task.description.slice(0..100) + '...'
                 - else
                   == task.description
             .content.c-tags

@@ -45,7 +45,12 @@ end
 get '/show/:id' do
   if user_signed_in?
     @task = current_user.tasks.find_by_id(params[:id])
-    slim :show
+    if @task.nil?
+      flash[:warning] = 'Task dont exists.'
+      redirect '/list'
+    else
+      slim :show
+    end
   else
     flash[:warning] = 'Please login.'
     redirect '/login'

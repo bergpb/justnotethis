@@ -14,6 +14,7 @@ Dir.glob(File.dirname(__FILE__) + '/app/{models,helpers,controllers,views}/*.rb'
 
 set :root, File.dirname(__FILE__)
 set :views, Proc.new { File.join(root, 'app/views') }
+set :public_folder, File.dirname(__FILE__) + 'app/public'
 set :session_secret, ENV['SECRET_KEY']
 enable :sessions
 
