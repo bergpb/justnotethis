@@ -1,7 +1,9 @@
 get '/' do
-  @not_completed_tasks = current_user.tasks.where(active: true).length
-  @completed_tasks = current_user.tasks.where(active: false).length
-  @username = current_user.username if current_user
+  if user_signed_in?
+    @not_completed_tasks = current_user.tasks.where(active: true).length
+    @completed_tasks = current_user.tasks.where(active: false).length
+    @username = current_user.username if current_user
+  end
   slim :"main/index"
 end
 
