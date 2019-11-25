@@ -11,29 +11,7 @@ html
     script src="/js/sweetalert2.all.min.js"
     script src="/js/custom.js"
   body
-    nav.navbar.is-primary.is-fixed-top role="navigation" aria-label="main navigation"
-      .navbar-brand
-        a#home.navbar-item.has-text-black.has-text-weight-semibold href="/" JustTaskThis
-        a.navbar-burger.burger arial-label="menu" aria-expanded="false" data-target="navbar-menu"
-          span aria-hidden="true"
-          span aria-hidden="true"
-          span aria-hidden="true"
-      .navbar-menu id="navbar-menu"
-        .navbar-end
-          - if current_user.nil?
-            a#login.navbar-item.has-text-black.has-text-weight-semibold href="/login" title="Login"
-              i.fas.fa-sign-in-alt
-              | &nbsp; Login
-          - else
-              a#new.navbar-item.has-text-black.has-text-weight-semibold href="/new" title="Add Task"
-                i.fas.fa-plus
-                | &nbsp; Add Task
-              a#list.navbar-item.has-text-black.has-text-weight-semibold href="/list" title="List Task"
-                i.fas.fa-list-ul
-                | &nbsp; List Tasks
-              a.navbar-item.has-text-black.has-text-weight-semibold href="/logout" title="Logout"
-                i.fas.fa-sign-out-alt
-                | &nbsp; Logout
+    == slim(:"app/navbar") 
     section.section
       .container
         .content
@@ -41,5 +19,6 @@ html
             javascript:
               showToast("#{flash.values.first}", "#{type}");
           == yield
+    == slim(:"app/footer") 
     javascript:
       switchNav(window.location.pathname)

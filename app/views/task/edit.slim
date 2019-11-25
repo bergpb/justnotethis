@@ -2,10 +2,15 @@ form method="post" action="/edit/#{@task.id}"
   .columns.is-mobile
     .column.is-4-desktop.is-offset-4-desktop.is-6-tablet.is-offset-3-tablet.is-12-mobile
       .title.is-4 Edit task:
+      - if !@errors.nil?
+        div.notification.is-warning
+          button.delete
+          - @errors.each do |attr, msg|
+            li = msg
       .field
-        input.input.is-primary type="text" name="title" placeholder="Title" value="#{@task.title}"
+        input.input.is-primary type="text" name="title" placeholder="Title" value="#{@task.title}" required=""
       .field
-        textarea.textarea.is-primary name="description" placeholder="Description"
+        textarea.textarea.is-primary name="description" placeholder="Description" required=""
           = @task.description
       label.checkbox: input type="checkbox" name="active" checked=@task.active
         | &nbsp; Task is enabled?

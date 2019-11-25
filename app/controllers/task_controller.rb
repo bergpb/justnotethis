@@ -1,15 +1,15 @@
 get '/' do
-  @not_completed_tasks = Task.where(active: true).length
-  @completed_tasks = Task.where(active: false).length
+  @not_completed_tasks = current_user.tasks.where(active: true).length
+  @completed_tasks = current_user.tasks.where(active: false).length
   @username = current_user.username if current_user
-  slim :index
+  slim :"main/index"
 end
 
 route :get, :post, '/new' do
   method = request.env["REQUEST_METHOD"]
   if method == "GET"
     if user_signed_in?
-      slim :new
+      slim :"task/new"
     else
       flash[:warning] = 'Please login.'
       redirect '/login'
@@ -23,19 +23,19 @@ route :get, :post, '/new' do
       flash[:success] = 'Task saved.'
       redirect '/list'
     else
-      flash[:warning] = 'Check form data.'
-      redirect '/new'
+      @errors = @task.errors
+      slim :"task/new"
     end
   end
 end
 
 get '/list' do
   if user_signed_in?
-    @tasks = Task.all().order(created_at: :desc)
+    @tasks = current_user.tasks.order(created_at: :desc)
     @tasks.each do |task|
       task.description = task.description.gsub(/\r/, '</br>')
     end
-    slim :list
+    slim :"task/list"
   else
     flash[:warning] = 'Please login.'
     redirect '/login'
@@ -46,10 +46,10 @@ get '/show/:id' do
   if user_signed_in?
     @task = current_user.tasks.find_by_id(params[:id])
     if @task.nil?
-      flash[:warning] = 'Task dont exists.'
+      flash[:warning] = "Task don't exists."
       redirect '/list'
     else
-      slim :show
+      slim :"task/show"
     end
   else
     flash[:warning] = 'Please login.'
@@ -63,9 +63,9 @@ route :get, :post, '/edit/:id' do
     if user_signed_in?
       @task = current_user.tasks.find_by_id(params[:id])
       unless @task.nil?
-        slim :edit
+        slim :"task/edit"
       else
-        flash[:warning] = 'Task dont exists.'
+        flash[:warning] = "Task don't exists."
         redirect '/list'
       end
     else
@@ -81,9 +81,9 @@ route :get, :post, '/edit/:id' do
   	  @task.save
   	  flash[:success] = 'Task updated.'
   	  redirect '/list'
-  	else
-  	   flash[:warning] = 'Check form data.'
-  	   slim :edit
+    else
+      @errors = @task.errors
+  	  slim :"task/edit"
   	end
   end
 end
@@ -96,7 +96,7 @@ get '/complete/:id' do
   	  flash[:success] = 'Task updated.'
   	  redirect '/list'
   	else
-  	   flash[:success] = 'Fail to mark task with complete.'
+  	   flash[:danger] = 'Fail to update task.'
   	   slim :edit
   	end
   else
@@ -118,7 +118,7 @@ get '/delete/:id' do
         redirect '/list'
       end
     else
-      flash[:warning] = 'Task don\'t exists.'
+      flash[:warning] = "Task don't exists."
       redirect '/list'
     end
   else

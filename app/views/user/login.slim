@@ -1,12 +1,12 @@
 form method="post" action="/login"
   .columns.is-mobile
-    .column.is-4-desktop.is-offset-4-desktop.is-6-tablet.is-offset-3-tablet.is-10-mobile.is.is-offset-1-mobile
+    .column.is-4-desktop.is-offset-4-desktop.is-6-tablet.is-offset-3-tablet.is-12-mobile
       .title.is-4 Login
       .field.control.has-icons-left.has-icons-right
-        input.input.is-primary type="text" name="username" placeholder="Username"
+        input.input.is-primary type="text" name="username" placeholder="Username" required=""
         span.icon.is-small.is-left: i.fas.fa-user
       .field.control.has-icons-left.has-icons-right
-        input.input.is-primary type="password" name="password" placeholder="Password"
+        input.input.is-primary type="password" name="password" placeholder="Password" required=""
         span.icon.is-small.is-left: i.fas.fa-lock
   .columns.is-mobile.has-text-centered
     .column
