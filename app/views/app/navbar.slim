@@ -9,8 +9,9 @@ nav.navbar.is-primary.is-fixed-top role="navigation" aria-label="main navigation
     .navbar-end
       - if current_user.nil?
         a#login.navbar-item.has-text-black.has-text-weight-semibold href="/login" title="Login"
-          i.fas.fa-sign-in-alt
-          | Login
+          div
+            i.fas.fa-sign-in-alt
+            '  Login
       - else
           a#new.navbar-item.has-text-black.has-text-weight-semibold href="/new" title="Add Note"
             div 

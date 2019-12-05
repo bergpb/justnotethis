@@ -1,6 +1,6 @@
-### JustTaskThis
+### JustNoteThis
 
-- A task app made with Ruby and Sinatra.
+- A note app made with Ruby and Sinatra.
 
 Instructions:
 - Clone this app,
