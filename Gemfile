@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 source "https://rubygems.org"
+ruby "2.6.5"
 
 gem 'bcrypt'
 gem 'rake'
@@ -9,10 +10,8 @@ gem 'sinatra-contrib'
 gem 'sinatra-activerecord'
 gem 'sinatra-flash'
 gem 'slim'
-gem 'will_paginate', '~> 3.1.0'
-gem "will_paginate-bulma", path: "./vendor/will_paginate-bulma"
 
-group :production, :test do
+group :production do
   gem 'pg'
 end
 

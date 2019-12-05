@@ -1,6 +1,6 @@
-class CreateTasks < ActiveRecord::Migration[5.2]
+class CreateNotes < ActiveRecord::Migration[6.0]
   def change
-    create_table :tasks do |t|
+    create_table :notes do |t|
         t.text :title
         t.text :description
         t.references :user
@@ -8,6 +8,6 @@ class CreateTasks < ActiveRecord::Migration[5.2]
     end
   end
   def down
-    drop_table :tasks
+    drop_table :notes
   end
 end

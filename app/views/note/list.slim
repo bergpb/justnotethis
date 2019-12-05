@@ -1,0 +1,45 @@
+- if !@notes.all.empty?
+  .columns.is-mobile
+    .column.is-6
+      h4.title.is-4 All notes:
+  .columns.is-mobile.is-multiline
+    - @notes.each do |note|
+      .column.is-3-desktop.is-4-tablet.is-12-mobile
+        .card
+          header.card-header
+            p.card-header-title class=(note.active == false ? 'line-through' : '')
+              = note.title
+          .card-content
+            .content class=(note.active == false ? 'line-through' : '')
+              p.description
+                - if note.description.length > 100
+                  == note.description.slice(0..100) + '...'
+                - else
+                  == note.description
+            .content.c-tags
+              span.tag.is-success.is-pulled-right
+                = note.created_at.strftime('%B %d, %Y')
+          footer.card-footer
+            a.card-footer-item href="/show/#{note.id}"
+              i.fas.fa-eye.has-text-info
+            a.card-footer-item href="/edit/#{note.id}"
+              i.fas.fa-edit.has-text-link
+            - if note.active
+              a.card-footer-item href="/complete/#{note.id}"
+                i.fas.has-text-primary.fa-check
+            - else
+              / a#btn-delete_.card-footer-item
+              a[class="card-footer-item", id="btn-delete-#{note.id}"]
+                i.fas.fa-trash.has-text-danger
+              javascript:
+                $(function(){
+                  $('#btn-delete-#{note.id}').on('click', function() {
+                    showSwLink("Delete note?", "question", true,
+                              "Delete", "red", "/delete/#{note.id}")
+                  });
+                });
+        br
+- else
+  p
+    | Ops! Nothing here, create a new note.
+  a.button.is-primary href="/new" New Note

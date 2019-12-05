@@ -4,17 +4,17 @@
     .card
       header.card-header
         p.card-header-title
-          span class=(@task.active == false ? 'line-through' : '')
-            = @task.title
+          span class=(@note.active == false ? 'line-through' : '')
+            = @note.title
       .card-content
         .content
-          p.description class=(@task.active == false ? 'line-through' : '')
-            == @task.description.gsub(/\r/, '</br>')
+          p.description class=(@note.active == false ? 'line-through' : '')
+            == @note.description.gsub(/\r/, '</br>')
         .content.c-tags
           span.tag.is-success.is-pulled-right
-            = @task.created_at.strftime('%B %d, %Y')
+            = @note.created_at.strftime('%B %d, %Y')
       footer.card-footer
-        a.card-footer-item href="/edit/#{@task.id}"
+        a.card-footer-item href="/edit/#{@note.id}"
           i.fas.fa-edit.has-text-info
         a#btn-delete.card-footer-item
           i.fas.fa-trash.has-text-danger
@@ -27,6 +27,6 @@
 javascript:
   $(function(){
     $('#btn-delete').on('click', function() {
-      showSwLink("Delete task?", "question", true, "Delete", "red", "/delete/#{@task.id}")
+      showSwLink("Delete note?", "question", true, "Delete", "red", "/delete/#{@note.id}")
     });
   });

@@ -1,0 +1,27 @@
+- if !user_signed_in?
+  h4.title.is-4 Hello to JustNoteThis!
+  p
+    ' Please
+    a href="/login" login
+    '  to access your notes.
+  p
+    ' Don't have a login? Just
+    a href="/register" register
+    '  to access app.
+- else
+  h4.title.is-4 Hello @#{@username}!
+  - if @not_completed_notes > 0
+    p
+      ' You have
+      strong #{@not_completed_notes}
+      '  not completed notes.
+    p
+      ' You have
+      strong #{@completed_notes}
+      '  completed notes.
+  - else
+    p
+      ' You dont have notes to show.
+      '  Try creating one
+      a href="/new"  here
+      ' .

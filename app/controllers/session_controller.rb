@@ -1,19 +1,13 @@
-get '/' do
-  @not_seen_notes = Task.where(active: true).length
-  @username = current_user.username if current_user
-  slim :index
-end
-
-get '/login' do
-  if user_signed_in?
-    redirect '/'
-  else
-    slim :login
-  end
-end
-
-post '/login' do
-  user = User.find_by('username = ?', params[:username])
+route :get, :post, '/login' do
+  method = request.env["REQUEST_METHOD"]
+  if method == "GET"
+    if user_signed_in?
+      redirect '/'
+    else
+      slim :"user/login"
+    end
+  elsif method == "POST"
+    user = User.find_by('username = ?', params[:username])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       flash[:success] = 'User logged.'
@@ -22,6 +16,7 @@ post '/login' do
       flash[:warning] = 'User or password incorrect.'
       redirect '/login'
     end
+  end
 end
 
 get '/logout' do
