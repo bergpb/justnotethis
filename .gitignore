@@ -54,5 +54,3 @@ build-iPhoneSimulator/
 
 # sqlitedb
 /db/development.sqlite3
-# some notes
-.notes
