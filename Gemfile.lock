@@ -15,9 +15,15 @@ GEM
     ast (2.4.0)
     backports (3.15.0)
     bcrypt (3.1.13)
+    better_errors (2.5.1)
+      coderay (>= 1.0.0)
+      erubi (>= 1.0.0)
+      rack (>= 0.9.0)
     byebug (11.0.1)
+    coderay (1.1.2)
     concurrent-ruby (1.1.5)
-    faker (2.7.0)
+    erubi (1.9.0)
+    faker (2.8.0)
       i18n (>= 1.6, < 1.8)
     i18n (1.7.0)
       concurrent-ruby (~> 1.0)
@@ -25,7 +31,7 @@ GEM
     minitest (5.13.0)
     multi_json (1.14.1)
     mustermann (1.0.3)
-    parallel (1.19.0)
+    parallel (1.19.1)
     parser (2.6.5.0)
       ast (~> 2.4.0)
     pg (1.1.4)
@@ -34,7 +40,7 @@ GEM
       rack
     rainbow (3.0.0)
     rake (13.0.1)
-    rubocop (0.76.0)
+    rubocop (0.77.0)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
       parser (>= 2.6)
@@ -78,13 +84,14 @@ GEM
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
     unicode-display_width (1.6.0)
-    zeitwerk (2.2.1)
+    zeitwerk (2.2.2)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   bcrypt
+  better_errors
   byebug
   faker
   pg
@@ -99,9 +106,6 @@ DEPENDENCIES
   slim_lint
   sqlite3
   standard
-
-RUBY VERSION
-   ruby 2.6.5p114
 
 BUNDLED WITH
    1.17.3
