@@ -22,5 +22,5 @@ jobs:
     - name: Build and with Rake
       run: |
         gem install bundle
-        bundle install --without development --jobs 4 --retry 3
+        bundle install --without development test --jobs 4 --retry 3
         bundle exec rake
