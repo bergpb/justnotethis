@@ -15,30 +15,21 @@
   }
 })();
 
-$(document).on('click', '.notification > button.delete', function() {
-  $(this).parent().addClass('is-hidden');
-  return false;
-});
-
 $(document).ready(function() {
+  url = location.pathname.split("/")[1]
   $(".navbar-burger").click(function() {
     $(".navbar-burger").toggleClass("is-active");
     $(".navbar-menu").toggleClass("is-active");
   });
+  if(url != ""){
+    $(`.navbar-menu a[href^="/${url}"]`).addClass('is-active');
+  }
 });
 
-function switchNav(path){
-  switch (path) {
-  case '/': $('#home').addClass('is-active');
-    break;
-  case '/login': $('#login').addClass('is-active');
-    break;
-  case '/new': $('#new').addClass('is-active');
-    break;
-  case '/list': $('#list').addClass('is-active');
-    break;
-  }
-}
+$(document).on('click', '.notification > button.delete', function() {
+  $(this).parent().addClass('is-hidden');
+  return false;
+});
 
 function showToast(text, type){
   swal({});

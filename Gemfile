@@ -22,5 +22,4 @@ group :development, :test do
   gem 'slim_lint'
   gem 'sqlite3'
   gem 'standard'
-  gem 'better_errors'
 end

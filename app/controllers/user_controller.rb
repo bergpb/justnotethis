@@ -15,7 +15,7 @@ route :get, :post, '/register' do
         slim :"user/register"
       end
     else
-      flash[:error] = 'Passwords don\'t match.'
+      flash[:danger] = 'Passwords don\'t match.'
       redirect '/register'
     end
   end

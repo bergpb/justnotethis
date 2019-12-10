@@ -19,14 +19,13 @@ html
     script src="/js/sweetalert2.all.min.js"
     script src="/js/custom.js"
   body
-    == slim(:"app/navbar") 
+    == slim(:"app/navbar")
     section.section
       .container
         .content
           - flash.keys.each do |type|
-            javascript:
-              showToast("#{flash.values.first}", "#{type}");
+            div class=["notification is-#{type}"]
+              button.delete
+              p = flash[type]
           == yield
-    == slim(:"app/footer") 
-    javascript:
-      switchNav(window.location.pathname)
+    == slim(:"app/footer")

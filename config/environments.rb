@@ -1,9 +1,5 @@
 configure :development do
   require 'byebug'
-  require 'better_errors'
-
-  use BetterErrors::Middleware
-  BetterErrors.application_root = File.expand_path("..", __FILE__)
 end
 
 configure :production do

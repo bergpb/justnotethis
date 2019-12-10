@@ -1,8 +1,8 @@
 form method="post" action="/edit/#{@note.id}"
   .columns.is-mobile
-    .column.is-4-desktop.is-offset-4-desktop.is-6-tablet.is-offset-3-tablet.is-12-mobile
+    .column.is-6-desktop.is-offset-3-desktop.is-6-tablet.is-offset-3-tablet.is-12-mobile
       .title.is-4 Edit note:
-      - if !@errors.nil?
+      - unless @errors.nil?
         div.notification.is-warning
           button.delete
           - @errors.each do |attr, msg|
@@ -14,9 +14,8 @@ form method="post" action="/edit/#{@note.id}"
           = @note.description
       label.checkbox: input type="checkbox" name="active" checked=@note.active
         | &nbsp; Note is enabled?
-  .columns.is-mobile.has-text-centered
-    .column.is-2-desktop.is-offset-4-desktop.is-4-tablet.is-offset-2-tablet.is-6-mobile
-      input.button.is-primary type="submit" value="Save"
-    .column.is-2-desktop.is-4-tablet.is-6-mobile
-      a.button.is-info href="/list"
-        | Back
+  .columns.is-mobile
+    .column.is-2-desktop.is-offset-4-desktop.is-2-tablet.is-offset-4-tablet.is-6-mobile
+      input.button.is-primary.is-fullwidth type="submit" value="Save"
+    .column.is-2-desktop.is-2-tablet.is-6-mobile
+      a.button.is-info.is-fullwidth href="/list" Back

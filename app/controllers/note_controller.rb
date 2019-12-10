@@ -49,19 +49,25 @@ get '/list' do
   end
 end
 
-post '/search' do
-  if user_signed_in?
-    @search_for = params[:search]
-    @notes = current_user.notes\
-      .where('title LIKE ?', "%#{params[:search]}%")\
-      .order(created_at: :desc)
-    @notes.each do |note|
-      note.description = note.description.gsub(/\r/, '</br>')
+route :get, :post, '/search' do
+  method = request.env["REQUEST_METHOD"]
+  if method == 'GET'
+    flash[:warning] = 'Nothing to search.'
+    redirect '/list'
+  elsif method == "POST"
+    if user_signed_in?
+      @search_for = params[:search]
+      @notes = current_user.notes\
+        .where('title ILIKE ?', "%#{@search_for}%")\
+        .order(created_at: :desc)
+      @notes.each do |note|
+        note.description = note.description.gsub(/\r/, '</br>')
+      end
+      slim :"note/list"
+    else
+      flash[:warning] = 'Please login.'
+      redirect '/login'
     end
-    slim :"note/list"
-  else
-    flash[:warning] = 'Please login.'
-    redirect '/login'
   end
 end
 
