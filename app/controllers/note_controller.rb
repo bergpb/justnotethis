@@ -17,16 +17,21 @@ route :get, :post, '/new' do
       redirect '/login'
     end
   elsif method == "POST"
-    @note = Note.new(title: params[:title],
-                     description: params[:description],
-                     user_id: current_user.id)
-    if @note.valid?
-      @note.save
-      flash[:success] = 'Note saved.'
-      redirect '/list'
+    if user_signed_in?
+      @note = Note.new(title: params[:title],
+                      description: params[:description],
+                      user_id: current_user.id)
+      if @note.valid?
+        @note.save
+        flash[:success] = 'Note saved.'
+        redirect '/list'
+      else
+        @errors = @note.errors
+        slim :"note/new"
+      end
     else
-      @errors = @note.errors
-      slim :"note/new"
+      flash[:warning] = 'Please login.'
+      redirect '/login'
     end
   end
 end
@@ -34,6 +39,22 @@ end
 get '/list' do
   if user_signed_in?
     @notes = current_user.notes.order(created_at: :desc)
+    @notes.each do |note|
+      note.description = note.description.gsub(/\r/, '</br>')
+    end
+    slim :"note/list"
+  else
+    flash[:warning] = 'Please login.'
+    redirect '/login'
+  end
+end
+
+post '/search' do
+  if user_signed_in?
+    @search_for = params[:search]
+    @notes = current_user.notes\
+      .where('title LIKE ?', "%#{params[:search]}%")\
+      .order(created_at: :desc)
     @notes.each do |note|
       note.description = note.description.gsub(/\r/, '</br>')
     end
@@ -75,18 +96,23 @@ route :get, :post, '/edit/:id' do
       redirect '/login'
     end
   elsif method == "POST"
-    @note = current_user.notes.find_by_id(params[:id])
-  	@note.update(title: params[:title],
-                 description: params[:description],
-                 active: params[:active] == "on" ? true : false)
-  	if @note.valid?
-  	  @note.save
-  	  flash[:success] = 'Note updated.'
-  	  redirect '/list'
+    if user_signed_in?
+      @note = current_user.notes.find_by_id(params[:id])
+      @note.update(title: params[:title],
+                  description: params[:description],
+                  active: params[:active] == "on" ? true : false)
+      if @note.valid?
+        @note.save
+        flash[:success] = 'Note updated.'
+        redirect '/list'
+      else
+        @errors = @note.errors
+        slim :"note/edit"
+      end
     else
-      @errors = @note.errors
-  	  slim :"note/edit"
-  	end
+      flash[:warning] = 'Please login.'
+      redirect '/login'
+    end
   end
 end
 

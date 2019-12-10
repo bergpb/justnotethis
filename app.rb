@@ -20,4 +20,5 @@ set :views, Proc.new { File.join(root, 'app/views') }
 set :public_folder, File.dirname(__FILE__) + '/static'
 set :session_secret, ENV['SECRET_KEY']
 
-enable :sessions
+# expire after one week
+set :sessions, :expire_after => 604800

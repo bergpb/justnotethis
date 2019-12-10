@@ -1,7 +1,17 @@
 - if !@notes.all.empty?
   .columns.is-mobile
-    .column.is-6
-      h4.title.is-4 All notes:
+    .column.is-12-desktop.is-12-tablet.is-12-mobile
+      - if @search_for
+        h4.title.is-4 Results for "#{@search_for}":
+      - else
+        h4.title.is-4 All notes:
+  form method="post" action="/search"
+    .columns
+      .column.is-3-desktop.is-4-tablet.is-12-mobile
+        .field
+          input.input.is-primary type="text" name="search" placeholder="Search notes..."
+      .column.is-2-desktop.is-2-tablet.is-2-mobile
+        input.button.is-primary type="submit" value="Search"
   .columns.is-mobile.is-multiline
     - @notes.each do |note|
       .column.is-3-desktop.is-4-tablet.is-12-mobile
