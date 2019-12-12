@@ -127,7 +127,7 @@ get '/complete/:id' do
     @note = current_user.notes.find_by_id(params[:id])
   	@note.update(active: false)
   	if @note.save
-  	  flash[:success] = 'Note updated.'
+  	  flash[:success] = 'Note marked with complete.'
   	  redirect '/list'
   	else
   	   flash[:danger] = 'Fail to update note.'
@@ -142,7 +142,7 @@ end
 get '/delete/:id' do
   if user_signed_in?
     note = current_user.notes.find_by_id(params[:id])
-    if !note.nil?
+    unless note.nil?
       note.destroy
       if note.destroyed?
         flash[:success] = 'Note removed.'

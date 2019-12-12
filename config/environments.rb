@@ -1,4 +1,4 @@
-configure :development do
+configure :development, :test do
   require 'byebug'
 end
 

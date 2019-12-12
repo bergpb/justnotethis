@@ -2,9 +2,9 @@
   .columns.is-multiline
     .column.is-6-desktop.is-6-tablet.is-12-mobile
       - if @search_for
-        h4.title.is-4 Results for "#{@search_for}":
+        h4.title.is-4.no-m-b #{@notes.length} results for "#{@search_for}":
       - else
-        h4.title.is-4 All notes:
+        h4.title.is-4.no-m-b All notes:
     .column.is-6-desktop.is-6-tablet.is-12-mobile
       form method="post" action="/search"
         .columns
@@ -56,5 +56,5 @@
     h4.title.is-4 Results for "#{@search_for}":
     p Search is empty.
   - else
-    p Ops! Nothing here, create a new note.
+    h4.title.is-6 Ops! Nothing here, create a new note.
     a.button.is-primary href="/new" New Note

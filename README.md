@@ -15,3 +15,8 @@ Generating a new migration:
 - ```rake db:create_migration NAME=name_of_migration```,
 - Edit file created in db/migrate/,
 - Run: ```rake db:migrate```,
+
+
+Running tests:
+- You can run a single test file with ```ruby -Itest tests/name_of_file.rb```
+- Or running all tests: ```rake test```
