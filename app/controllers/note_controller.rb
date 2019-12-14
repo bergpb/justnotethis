@@ -150,7 +150,7 @@ end
 get '/delete/:id' do
   if user_signed_in?
     note = current_user.notes.find_by_id(params[:id])
-    if !note.nil?
+    unless note.nil?
       note.destroy
       if note.destroyed?
         flash[:success] = 'Note removed.'
