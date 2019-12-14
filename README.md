@@ -1,6 +1,10 @@
 ### JustNoteThis
 
+[![Actions Status](https://github.com/bergpb/justnotethis/workflows/Ruby/badge.svg)](https://github.com/bergpb/justnotethis/actions)
+
 - A note app made with Ruby and Sinatra.
+- See demo here: [https://justnotethis.herokuapp.com](https://justnotethis.herokuapp.com).
+- You can use user: justnotethis and password: justnotethis to test application.
 
 Instructions:
 - Clone this app,
@@ -14,3 +18,7 @@ Generating a new migration:
 - Edit file created in db/migrate/,
 - Run: ```rake db:migrate```,
 
+
+Running tests:
+- You can run a single test file with ```ruby -Itest tests/name_of_file.rb```
+- Or running all tests: ```rake test```

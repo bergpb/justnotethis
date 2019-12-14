@@ -34,6 +34,10 @@
   font-size: 12px;
 }
 
+.no-m-b{
+  margin-bottom: 0 !important;
+}
+
 .footer {
   bottom: 0;
   left: 0;

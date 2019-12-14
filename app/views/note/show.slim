@@ -1,6 +1,6 @@
 .title.is-4 Show note:
 .columns.is-mobile
-  .column.is-4-desktop.is-offset-4-desktop.is-6-tablet.is-offset-3-tablet.is-12-mobile
+  .column.is-6-desktop.is-offset-3-desktop.is-6-tablet.is-offset-3-tablet.is-12-mobile
     .card
       header.card-header
         p.card-header-title
@@ -12,17 +12,16 @@
             == @note.description.gsub(/\r/, '</br>')
         .content.c-tags
           span.tag.is-success.is-pulled-right
-            = @note.created_at.strftime('%B %d, %Y')
+            == @note.created_at.strftime('%d/%m/%Y')
       footer.card-footer
         a.card-footer-item href="/edit/#{@note.id}"
           i.fas.fa-edit.has-text-info
         a#btn-delete.card-footer-item
           i.fas.fa-trash.has-text-danger
 
-.columns.is-mobile.has-text-centered
-  .column.is-12-desktop.is-12-tablet.is-12-mobile
-    a.button.is-info href="/list"
-      | Back
+.columns.is-mobile
+  .column.is-2-desktop.is-offset-5-desktop.is-2-tablet.is-offset-5-tablet.is-4-mobile.is-offset-4-mobile
+    a.button.is-info.is-fullwidth href="/list" Back
 
 javascript:
   $(function(){

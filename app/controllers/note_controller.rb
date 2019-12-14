@@ -19,8 +19,8 @@ route :get, :post, '/new' do
   elsif method == "POST"
     if user_signed_in?
       @note = Note.new(title: params[:title],
-                      description: params[:description],
-                      user_id: current_user.id)
+                       description: params[:description],
+                       user_id: current_user.id)
       if @note.valid?
         @note.save
         flash[:success] = 'Note saved.'
@@ -49,30 +49,34 @@ get '/list' do
   end
 end
 
-post '/search' do
-  if user_signed_in?
-    @search_for = params[:search]
-    @notes = current_user.notes\
-      .where('title LIKE ?', "%#{params[:search]}%")\
-      .order(created_at: :desc)
-    @notes.each do |note|
-      note.description = note.description.gsub(/\r/, '</br>')
+route :get, :post, '/search' do
+  method = request.env['REQUEST_METHOD']
+  if method == 'GET'
+    flash[:warning] = 'Nothing to search.'
+    redirect '/list'
+  elsif method == 'POST'
+    if user_signed_in?
+      @search_for = params[:search]
+      @notes = current_user.notes.where('title LIKE ?', "%#{@search_for}%").order(created_at: :desc)
+      @notes.each do |note|
+        note.description = note.description.gsub(/\r/, '</br>')
+      end
+      slim :"note/list"
+    else
+      flash[:warning] = 'Please login.'
+      redirect '/login'
     end
-    slim :"note/list"
-  else
-    flash[:warning] = 'Please login.'
-    redirect '/login'
   end
 end
 
 get '/show/:id' do
   if user_signed_in?
     @note = current_user.notes.find_by_id(params[:id])
-    if @note.nil?
+    if !@note.nil?
+      slim :"note/show"
+    else
       flash[:warning] = "Note don't exists."
       redirect '/list'
-    else
-      slim :"note/show"
     end
   else
     flash[:warning] = 'Please login.'
@@ -81,11 +85,11 @@ get '/show/:id' do
 end
 
 route :get, :post, '/edit/:id' do
-  method = request.env["REQUEST_METHOD"]
-  if method == "GET"
+  method = request.env['REQUEST_METHOD']
+  if method == 'GET'
     if user_signed_in?
       @note = current_user.notes.find_by_id(params[:id])
-      unless @note.nil?
+      if !@note.nil?
         slim :"note/edit"
       else
         flash[:warning] = "Note don't exists."
@@ -95,19 +99,24 @@ route :get, :post, '/edit/:id' do
       flash[:warning] = 'Please login.'
       redirect '/login'
     end
-  elsif method == "POST"
+  elsif method == 'POST'
     if user_signed_in?
       @note = current_user.notes.find_by_id(params[:id])
-      @note.update(title: params[:title],
-                  description: params[:description],
-                  active: params[:active] == "on" ? true : false)
-      if @note.valid?
-        @note.save
-        flash[:success] = 'Note updated.'
-        redirect '/list'
+      if !@note.nil?
+        @note.update(title: params[:title],
+                     description: params[:description],
+                     active: params[:active] == "on" ? true : false)
+        if @note.valid?
+          @note.save
+          flash[:success] = 'Note updated.'
+          redirect '/list'
+        else
+          @errors = @note.errors
+          slim :"note/edit"
+        end
       else
-        @errors = @note.errors
-        slim :"note/edit"
+        flash[:warning] = "Note don't exists."
+        redirect '/list'
       end
     else
       flash[:warning] = 'Please login.'
@@ -119,14 +128,19 @@ end
 get '/complete/:id' do
   if user_signed_in?
     @note = current_user.notes.find_by_id(params[:id])
-  	@note.update(active: false)
-  	if @note.save
-  	  flash[:success] = 'Note updated.'
-  	  redirect '/list'
-  	else
-  	   flash[:danger] = 'Fail to update note.'
-  	   slim :edit
-  	end
+    if !@note.nil?
+      @note.update(active: false)
+      if !@note.save
+        flash[:danger] = 'Fail to update note.'
+        slim :edit
+      else
+        flash[:success] = 'Note marked with complete.'
+        redirect '/list'
+      end
+    else
+      flash[:warning] = "Note don't exists."
+      redirect '/list'
+    end
   else
     flash[:warning] = 'Please login.'
     redirect '/login'
@@ -140,15 +154,13 @@ get '/delete/:id' do
       note.destroy
       if note.destroyed?
         flash[:success] = 'Note removed.'
-        redirect '/list'
       else
         flash[:danger] = 'Fail to remove note.'
-        redirect '/list'
       end
     else
       flash[:warning] = "Note don't exists."
-      redirect '/list'
     end
+    redirect '/list'
   else
     flash[:warning] = 'Please login.'
     redirect '/login'

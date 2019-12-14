@@ -1,16 +1,17 @@
 route :get, :post, '/login' do
-  method = request.env["REQUEST_METHOD"]
-  if method == "GET"
+  method = request.env['REQUEST_METHOD']
+  if method == 'GET'
     if user_signed_in?
       redirect '/'
     else
       slim :"user/login"
     end
-  elsif method == "POST"
+  elsif method == 'POST'
     user = User.find_by('username = ?', params[:username])
-    if user && user.authenticate(params[:password])
+    auth_user = user.authenticate(params[:password])
+    if user && auth_user
       session[:user_id] = user.id
-      flash[:success] = 'User logged.'
+      flash[:success] = "Welcome back #{user.username}."
       redirect '/'
     else
       flash[:warning] = 'User or password incorrect.'

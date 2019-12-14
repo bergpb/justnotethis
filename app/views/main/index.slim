@@ -1,4 +1,4 @@
-- if !user_signed_in?
+- unless user_signed_in?
   h4.title.is-4 Hello to JustNoteThis!
   p
     ' Please
@@ -9,7 +9,7 @@
     a href="/register" register
     '  to access app.
 - else
-  h4.title.is-4 Hello @#{@username}!
+  h4.title.is-4 Hello #{@username}!
   - if @not_completed_notes > 0
     p
       ' You have

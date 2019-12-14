@@ -17,10 +17,12 @@ end
 group :development, :test do
   gem 'byebug'
   gem 'faker'
-  gem 'rubocop'
   gem 'shotgun'
   gem 'slim_lint'
   gem 'sqlite3'
   gem 'standard'
-  gem 'better_errors'
+  gem 'minitest'
+  gem 'rack-test'
+  gem 'minitest-reporters'
+  gem 'robocop'
 end
