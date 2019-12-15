@@ -9,6 +9,11 @@ Minitest::Reporters.use! [Minitest::Reporters::SpecReporter.new(
   color: true
 )]
 
+Minitest.after_run{
+  puts 'Removing test database...'
+  system 'rm -f db/*.sqlite3'
+}
+
 class Minitest::Test
   include Rack::Test::Methods
 
