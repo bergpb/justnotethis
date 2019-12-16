@@ -18,7 +18,7 @@ class Minitest::Test
   include Rack::Test::Methods
 
   puts 'Dropping and creating database...'
-  system 'rm -f db/*.sqlite3 && rake db:create db:migrate db:seed > /dev/null'
+  system 'rm -f db/*.sqlite3 && RACK_ENV=test rake db:create db:migrate db:seed > /dev/null'
   puts 'Ok!'
 
   $id_notes = (1..10).to_a

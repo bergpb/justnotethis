@@ -9,7 +9,7 @@
 Instructions:
 - Clone this app,
 - Install dependencies with ```bundler```,
-- Run db migrations and seeders ```rake db:create db:migrate db:seed```,
+- Run db migrations and seeders ```RACK_ENV=development rake db:create db:migrate db:seed```,
 - Start app in development mode: ```rake serve```.
 
 
