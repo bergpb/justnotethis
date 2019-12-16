@@ -26,5 +26,5 @@ jobs:
 
     - name: Test
       run: |
-        rake db:create db:migrate db:seed
+        RACK_ENV=test rake db:create db:migrate db:seed
         rake
