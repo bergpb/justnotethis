@@ -8,9 +8,9 @@
 
 Instructions:
 - Clone this app,
-- Install dependencies with ```bundler```,
+- Install dependencies with ```bundle --without production```,
 - Run db migrations and seeders ```RACK_ENV=development rake db:create db:migrate db:seed```,
-- Start app in development mode: ```rake serve```.
+- Start app in development mode: ```RACK_ENV=development rake serve```.
 
 
 Generating a new migration:
@@ -20,5 +20,4 @@ Generating a new migration:
 
 
 Running tests:
-- You can run a single test file with ```ruby -Itest tests/name_of_file.rb```
-- Or running all tests: ```rake test```
+- Running tests: ```RACK_ENV=test rake test```

@@ -1,3 +1,16 @@
+get '/' do
+  if user_signed_in?
+    not_completed_notes = current_user.notes.where(active: true).length
+    completed_notes = current_user.notes.where(active: false).length
+    username = current_user.username if current_user
+  end
+  slim :"main/index", locals: {
+    not_completed_notes: not_completed_notes,
+    completed_notes: completed_notes,
+    username: username
+  }
+end
+
 not_found do
   status 404
   slim :"main/not_found"

@@ -8,7 +8,7 @@ class IndexTests < Minitest::Test
     assert_includes last_response.body, 'Hello to JustNoteThis!'
   end
 
-  def test_not_found_page
+  def test_not_found_status
     get '/test'
     assert !last_response.ok?
     assert_equal last_response.status, 404

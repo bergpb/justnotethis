@@ -1,7 +1,7 @@
 route :get, :post, '/register' do
   method = request.env['REQUEST_METHOD']
   if method == 'GET'
-    slim :"user/register"
+    slim :"user/register", locals: {errors: nil}
   elsif method == 'POST'
     if params[:password] == params[:check_password]
       user = User.new(username: params[:username],
@@ -11,15 +11,11 @@ route :get, :post, '/register' do
         flash[:success] = 'User registred.'
         redirect '/login'
       else
-        @errors = user.errors
-        slim :"user/register"
+        slim :"user/register", locals: {errors: user.errors}
       end
     else
-      flash[:danger] = 'Passwords don\'t match.'
+      flash[:danger] = "Passwords don't match."
       redirect '/register'
     end
   end
-end
-
-get '/forgot_password' do
 end

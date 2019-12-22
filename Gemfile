@@ -9,6 +9,7 @@ gem 'sinatra-activerecord'
 gem 'sinatra-contrib'
 gem 'sinatra-flash'
 gem 'slim'
+gem 'pagy'
 
 group :production do
   gem 'pg'
@@ -22,6 +23,8 @@ group :development, :test do
   gem 'rack-test'
   gem 'robocop'
   gem 'shotgun'
+  gem 'simplecov'
+  gem 'simplecov-console'
   gem 'slim_lint'
   gem 'sqlite3'
   gem 'standard'

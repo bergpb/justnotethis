@@ -1,10 +1,10 @@
 form method="post" action="/new"
   .columns.is-mobile
     .column.is-6-desktop.is-offset-3-desktop.is-6-tablet.is-offset-3-tablet.is-12-mobile
-      - unless @errors.nil?
+      - unless errors.nil?
         div.notification.is-warning
           button.delete
-          - @errors.each do |attr, msg|
+          - errors.each do |attr, msg|
             li 
               small = msg
       .title.is-4 New note:

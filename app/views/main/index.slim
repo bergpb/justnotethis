@@ -9,15 +9,16 @@
     a href="/register" register
     '  to access app.
 - else
-  h4.title.is-4 Hello #{@username}!
-  - if @not_completed_notes > 0
+  h4.title.is-4 Hello #{username}!
+  - if not_completed_notes > 0
     p
       ' You have
-      strong #{@not_completed_notes}
-      '  not completed notes.
+      strong #{not_completed_notes}
+      '  not completed notes,
+      a href="/list" go to notes!
     p
       ' You have
-      strong #{@completed_notes}
+      strong #{completed_notes}
       '  completed notes.
   - else
     p

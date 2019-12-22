@@ -19,13 +19,12 @@ html
     script src="/js/sweetalert2.all.min.js"
     script src="/js/custom.js"
   body
-    == slim(:"partials/navbar")
+    == slim(:"partials/_navbar")
     section.section
       .container
-        .content
-          - flash.keys.each do |type|
-            div class=["notification is-#{type}"]
-              button.delete
-              p = flash[type]
-          == yield
-    == slim(:"partials/footer")
+        - flash.keys.each do |type|
+          div class=["notification is-#{type}"]
+            button.delete
+            p = flash[type]
+        == yield
+    == slim(:"partials/_footer")

@@ -1,7 +1,9 @@
+require 'pagy'
 require 'slim'
 require 'bcrypt'
 require 'sinatra'
 require 'sinatra/flash'
+require 'pagy/extras/bulma'
 require 'sinatra/multi_route'
 require 'sinatra/activerecord'
 require './config/environments'
@@ -22,3 +24,6 @@ set :session_secret, ENV['SECRET_KEY']
 
 # expire after one week
 set :sessions, :expire_after => 604800
+
+# set max itens per page
+Pagy::VARS[:items] = 12

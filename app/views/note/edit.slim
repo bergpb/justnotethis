@@ -1,18 +1,18 @@
-form method="post" action="/edit/#{@note.id}"
+form method="post" action="/edit/#{note.id}"
   .columns.is-mobile
     .column.is-6-desktop.is-offset-3-desktop.is-6-tablet.is-offset-3-tablet.is-12-mobile
       .title.is-4 Edit note:
-      - unless @errors.nil?
+      - unless errors.nil?
         div.notification.is-warning
           button.delete
-          - @errors.each do |attr, msg|
+          - errors.each do |attr, msg|
             li = msg
       .field
-        input.input.is-primary type="text" name="title" placeholder="Title" value="#{@note.title}" required=""
+        input.input.is-primary type="text" name="title" placeholder="Title" value="#{note.title}" required=""
       .field
         textarea.textarea.is-primary name="description" placeholder="Description" required=""
-          = @note.description
-      label.checkbox: input type="checkbox" name="active" checked=@note.active
+          = note.description
+      label.checkbox: input type="checkbox" name="active" checked=note.active
         | &nbsp; Note is enabled?
   .columns.is-mobile
     .column.is-2-desktop.is-offset-4-desktop.is-2-tablet.is-offset-4-tablet.is-6-mobile

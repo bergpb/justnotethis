@@ -1,8 +1,8 @@
-- unless @notes.all.empty?
+- unless notes.all.empty?
   .columns.is-multiline
     .column.is-6-desktop.is-6-tablet.is-12-mobile
-      - if @search_for
-        h4.title.is-4.no-m-b #{@notes.length} results for "#{@search_for}":
+      - if search_for
+        h4.title.is-4.no-m-b #{notes.length} results for "#{search_for}":
       - else
         h4.title.is-4.no-m-b All notes:
     .column.is-6-desktop.is-6-tablet.is-12-mobile
@@ -15,7 +15,7 @@
             .field
               input.button.is-primary type="submit" value="Search"
   .columns.is-multiline
-    - @notes.each do |note|
+    - notes.each do |note|
       .column.is-3-desktop.is-4-tablet.is-12-mobile
         .card
           header.card-header
@@ -49,11 +49,13 @@
                               "Delete", "red", "/delete/#{note.id}")
                   });
                 });
+  - unless search_for
+    == slim(:"partials/_pagination", locals: {pagy: pagy})
   br
 
 - else
-  - if @search_for and @notes.all.empty?
-    h4.title.is-4 Search is empty.
+  - if search_for and notes.all.empty?
+    h3.title.is-4 No results for search "#{search_for}".
     a.button.is-primary href="/list" Back
   - else
     h4.title.is-6 Ops! Nothing here, create a new note.

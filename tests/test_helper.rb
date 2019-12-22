@@ -1,4 +1,12 @@
-ENV['RACK_ENV'] = 'test'
+require 'simplecov'
+require 'simplecov-console'
+
+SimpleCov.start do
+  SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
+    SimpleCov::Formatter::HTMLFormatter,
+    SimpleCov::Formatter::Console
+  ])
+end
 
 require 'minitest/autorun'
 require 'rack/test'
@@ -11,14 +19,14 @@ Minitest::Reporters.use! [Minitest::Reporters::SpecReporter.new(
 
 Minitest.after_run{
   puts 'Removing test database...'
-  system 'rm -f db/*.sqlite3'
+  system 'rm -f db/test.sqlite3'
 }
 
 class Minitest::Test
   include Rack::Test::Methods
 
-  puts 'Dropping and creating database...'
-  system 'rm -f db/*.sqlite3 && RACK_ENV=test rake db:create db:migrate db:seed > /dev/null'
+  puts 'Dropping and recreating database...'
+  system 'rm -f db/test.sqlite3 && RACK_ENV=test rake db:create db:migrate db:seed > /dev/null'
   puts 'Ok!'
 
   $id_notes = (1..10).to_a
