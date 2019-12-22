@@ -47,6 +47,14 @@ class NoteTests < Minitest::Test
     assert_equal last_response.status, 200, 'Response is not 200'
   end
 
+  def test_overflow_pagination
+    do_login
+    get '/list?page=10'
+    assert last_response.ok?
+    assert_equal last_response.status, 200, 'Response is not 200'
+    assert_includes last_response.body, 'Page not found! Showing last page.'
+  end
+
   def test_search_in_notes_get
     do_login
     get '/search'
@@ -62,7 +70,7 @@ class NoteTests < Minitest::Test
     assert_equal last_response.status, 200, 'Response is not 200'
   end
 
-  def test_edit_note
+  def test_editing_note
     do_login
     post "/edit/#{return_id}", title: 'admin',
                                description: '123456',

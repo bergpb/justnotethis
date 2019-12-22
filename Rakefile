@@ -5,7 +5,7 @@ require "./app"
 
 desc "Run server with shotgun"
 task :serve do
-  sh "shotgun --port=4567 app.rb"
+  sh "shotgun app.rb"
 end
 
 task default: "test"
