@@ -1,7 +1,7 @@
+require "./app"
 require "standard/rake"
 require "sinatra/activerecord/rake"
 require 'rake/testtask'
-require "./app"
 
 desc "Run server with shotgun"
 task :serve do
