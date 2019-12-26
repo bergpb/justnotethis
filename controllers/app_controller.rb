@@ -34,8 +34,8 @@ end
 def check_database_type
   case ActiveRecord::Base.connection.adapter_name
   when 'PostgreSQL'
-    'title ILIKE ?'
+    'ILIKE'
   else
-    'title LIKE ?'
+    'LIKE'
   end
 end

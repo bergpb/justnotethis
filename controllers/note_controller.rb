@@ -4,7 +4,7 @@ route :get, :post, '/new' do
   method = request.env['REQUEST_METHOD']
   if method == 'GET'
     if user_signed_in?
-      slim :"note/new", locals: { note: nil, errors: nil }
+      slim :"note/new", locals: { errors: nil }
     else
       flash[:warning] = 'Please login.'
       redirect '/login'
@@ -55,21 +55,15 @@ get '/list' do
   end
 end
 
-route :get, :post, '/search' do
-  method = request.env['REQUEST_METHOD']
-  if method == 'GET'
-    flash[:warning] = 'Nothing to search.'
-    redirect '/list'
-  elsif method == 'POST'
-    like = check_database_type
-    if user_signed_in?
-      search_for = params[:search]
-      notes = current_user.notes.where(like, "%#{search_for}%").order(created_at: :desc)
-      slim :"note/list", locals: { notes: notes, search_for: search_for }
-    else
-      flash[:warning] = 'Please login.'
-      redirect '/login'
-    end
+get '/search' do
+  like = check_database_type
+  if user_signed_in?
+    search_for = params[:search]
+    notes = current_user.notes.where("title #{like} ?", "%#{search_for}%").order(created_at: :desc)
+    slim :"note/list", locals: { notes: notes, search_for: search_for }
+  else
+    flash[:warning] = 'Please login.'
+    redirect '/login'
   end
 end
 

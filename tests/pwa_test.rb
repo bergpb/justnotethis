@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require File.expand_path(File.join('..', 'tests', 'test_helper'), __dir__)
 
 class PWATests < Minitest::Test

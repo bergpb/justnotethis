@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require File.expand_path(File.join('..', 'tests', 'test_helper'), __dir__)
 
 class NoteTests < Minitest::Test
@@ -16,7 +18,7 @@ class NoteTests < Minitest::Test
   def return_id
     @id_note = $id_notes.sample
     $id_notes -= [@id_note]
-    return @id_note
+    @id_note
   end
 
   def test_create_note
@@ -57,17 +59,10 @@ class NoteTests < Minitest::Test
 
   def test_search_in_notes_get
     do_login
-    get '/search'
-    follow_redirect!
+    get '/search?search=a'
     assert last_response.ok?
     assert_equal last_response.status, 200, 'Response is not 200'
-    assert_includes last_response.body, 'Nothing to search.'
-  end
-
-  def test_search_in_notes_post
-    do_login
-    post '/search', search: 'jess'
-    assert_equal last_response.status, 200, 'Response is not 200'
+    assert_includes last_response.body, 'results for'
   end
 
   def test_editing_note

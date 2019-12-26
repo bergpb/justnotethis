@@ -1,4 +1,5 @@
 *.gem
+*.pryrc
 *.rbc
 /.config
 /coverage/

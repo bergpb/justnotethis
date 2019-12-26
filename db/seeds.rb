@@ -1,15 +1,17 @@
+# frozen_string_literal: true
+
 require 'faker'
 
 include Faker
 
 puts 'Running seed...'
 
-case ENV["RACK_ENV"]
-when 'development'
-  range = 0...100
-else
-  range = 0...10
-end
+range = case ENV['RACK_ENV']
+        when 'development'
+          0...100
+        else
+          0...10
+        end
 
 User.create(username: 'admin',
             email: 'admin@gmail.com',
@@ -22,4 +24,4 @@ range.each do
               active: true)
 end
 
-puts "Seed finished."
+puts 'Seed finished.'

@@ -3,13 +3,14 @@
 source 'https://rubygems.org'
 
 gem 'bcrypt'
+gem 'pagy'
 gem 'rake'
 gem 'sinatra'
 gem 'sinatra-activerecord'
 gem 'sinatra-contrib'
 gem 'sinatra-flash'
 gem 'slim'
-gem 'pagy'
+gem 'thin'
 
 group :production do
   gem 'pg'
@@ -21,11 +22,10 @@ group :development, :test do
   gem 'minitest'
   gem 'minitest-reporters'
   gem 'rack-test'
-  gem 'robocop'
+  gem 'robocop', require: false
   gem 'shotgun'
   gem 'simplecov'
   gem 'simplecov-console'
   gem 'slim_lint'
   gem 'sqlite3'
-  gem 'standard'
 end

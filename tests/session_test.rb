@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require File.expand_path(File.join('..', 'tests', 'test_helper'), __dir__)
 
 class SessionsTests < Minitest::Test
@@ -30,7 +32,7 @@ class SessionsTests < Minitest::Test
     post '/login', username: 'admin', password: 'admin'
     assert_equal last_response.status, 302
     assert_equal last_request.env['rack.session'][:flash][:warning],
-                    'User or password incorrect.'
+                 'User or password incorrect.'
     follow_redirect!
     assert_equal last_response.status, 200
   end
@@ -39,7 +41,7 @@ class SessionsTests < Minitest::Test
     get '/logout'
     assert_equal last_response.status, 302
     assert_equal last_request.env['rack.session'][:flash][:info],
-                    'Please login.'
+                 'Please login.'
     follow_redirect!
     assert_equal last_response.status, 200
   end

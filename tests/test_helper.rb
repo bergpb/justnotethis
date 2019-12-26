@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 require 'simplecov'
 require 'simplecov-console'
 
 SimpleCov.start do
   SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
-    SimpleCov::Formatter::HTMLFormatter,
-    SimpleCov::Formatter::Console
-  ])
+                                                                   SimpleCov::Formatter::HTMLFormatter,
+                                                                   SimpleCov::Formatter::Console
+                                                                 ])
 end
 
 require 'minitest/autorun'
@@ -17,10 +19,10 @@ Minitest::Reporters.use! [Minitest::Reporters::SpecReporter.new(
   color: true
 )]
 
-Minitest.after_run{
+Minitest.after_run do
   puts 'Removing test database...'
   system 'rm -f db/test.sqlite3'
-}
+end
 
 class Minitest::Test
   include Rack::Test::Methods

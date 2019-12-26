@@ -1,0 +1,30 @@
+doctype 5
+html
+  head
+    title JustNoteThis
+
+    meta name="theme-color" content="#00D1B2"
+    link rel="manifest" href="/manifest.json"
+    link rel="shortcut icon" href="/images/favicon.ico"
+    meta name="apple-mobile-web-app-capable" content="yes"
+    meta name="apple-mobile-web-app-status-bar-style" content="#00D1B2"
+    meta content="width=device-width, initial-scale=1.0" name="viewport"
+
+    link rel="stylesheet" href="/css/bulma.min.css"
+    link rel="stylesheet" href="/css/sweetalert2.min.css"
+    link rel="stylesheet" href="/css/custom.css"
+    link rel="stylesheet" href="/css/fontawesome/css/all.min.css"
+
+    script src="/js/jquery-3.3.1.min.js"
+    script src="/js/sweetalert2.all.min.js"
+    script src="/js/custom.js"
+  body
+    == slim(:"partials/_navbar")
+    section.section
+      .container
+        - flash.keys.each do |type|
+          div class=["notification is-#{type}"]
+            button.delete
+            p = flash[type]
+        == yield
+    == slim(:"partials/_footer")
