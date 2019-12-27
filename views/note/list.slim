@@ -1,4 +1,4 @@
-- unless notes.all.empty?
+- if !notes.all.empty?
   .columns.is-multiline
     .column.is-6-desktop.is-6-tablet.is-12-mobile
       - if search_for
@@ -50,11 +50,11 @@
                   });
                 });
   - unless search_for
-    == slim(:"partials/_pagination", locals: {pagy: pagy})
+    == slim(:"partials/_pagination", locals: { pagy: pagy })
   br
 
 - else
-  - if search_for and notes.all.empty?
+  - if search_for && notes.all.empty?
     h3.title.is-4 No results for search "#{search_for}".
     a.button.is-primary href="/list" Back
   - else

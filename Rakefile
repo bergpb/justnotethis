@@ -4,7 +4,7 @@ require 'rake/testtask'
 require 'sinatra/activerecord/rake'
 require File.dirname(__FILE__) + '/app'
 
-desc 'Run server with shotgun'
+desc 'Run server with Shotgun and Thin'
 task :serve do
   sh 'shotgun config.ru'
 end

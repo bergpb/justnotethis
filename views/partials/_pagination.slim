@@ -7,14 +7,14 @@
 nav.pagination.is-centered.is-rounded role="navigation" aria-label="pagination"
 
   - if pagy.prev
-    == link.call(pagy.prev, "&lsaquo; Prev", 'class="pagination-previous" aria-label="previous page"')
+    == link.call(pagy.prev, '&lsaquo; Prev', 'class="pagination-previous" aria-label="previous page"')
   - else
-    a.pagination-previous disabled="disabled" == "&lsaquo; Prev"
+    a.pagination-previous disabled="disabled" == '&lsaquo; Prev'
 
   - if pagy.next
-    == link.call(pagy.next, "Next &rsaquo;", 'class="pagination-next" aria-label="next page"')
+    == link.call(pagy.next, 'Next &rsaquo;', 'class="pagination-next" aria-label="next page"')
   - else
-    a.pagination-next disabled="disabled" == "Next &rsaquo;"
+    a.pagination-next disabled="disabled" == 'Next &rsaquo;'
 
   ul.pagination-list
 

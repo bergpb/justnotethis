@@ -1,4 +1,4 @@
-- unless user_signed_in?
+- if !user_signed_in?
   h4.title.is-4 Hello to JustNoteThis!
   p
     ' Please
@@ -10,7 +10,7 @@
     '  to access app.
 - else
   h4.title.is-4 Hello #{username}!
-  - if not_completed_notes > 0
+  - if not_completed_notes.positive?
     p
       ' You have
       strong #{not_completed_notes}
