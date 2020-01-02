@@ -28,10 +28,14 @@ route :get, :post, '/new' do
   end
 end
 
-get '/list' do
+get '/list/:type' do
   if user_signed_in?
     begin
-      pagy, notes = pagy(current_user.notes.order(created_at: :desc))
+      if params[:type] == 'disabled'
+        pagy, notes = pagy(current_user.notes.where(active: false).order(created_at: :desc))
+      else
+        pagy, notes = pagy(current_user.notes.where(active: true).order(created_at: :desc))
+      end
       if pagy
         slim :"note/list", locals: {
           notes: notes,

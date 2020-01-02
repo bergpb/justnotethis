@@ -15,11 +15,12 @@
       ' You have
       strong #{not_completed_notes}
       '  not completed notes,
-      a href="/list" go to notes!
+      a href="/list/active" go to active notes!
     p
       ' You have
       strong #{completed_notes}
       '  completed notes.
+      a href="/list/disabled" go to disabled notes!
   - else
     p
       ' You dont have notes to show.
