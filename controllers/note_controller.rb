@@ -28,10 +28,11 @@ route :get, :post, '/new' do
   end
 end
 
-get '/list/:type' do
+get '/list' do
   if user_signed_in?
     begin
-      if params[:type] == 'disabled'
+      puts params[:type]
+      if params[:type] == 'complete'
         pagy, notes = pagy(current_user.notes.where(active: false).order(created_at: :desc))
       else
         pagy, notes = pagy(current_user.notes.where(active: true).order(created_at: :desc))
