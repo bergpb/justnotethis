@@ -5,7 +5,6 @@ source 'https://rubygems.org'
 gem 'bcrypt'
 gem 'pagy'
 gem 'rake'
-gem 'robocop', require: false
 gem 'sinatra'
 gem 'sinatra-activerecord'
 gem 'sinatra-contrib'
@@ -20,6 +19,7 @@ end
 group :development do
   gem 'byebug'
   gem 'faker'
+  gem 'robocop', require: false
   gem 'shotgun'
   gem 'slim_lint'
   gem 'sqlite3'
