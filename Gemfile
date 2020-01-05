@@ -5,6 +5,7 @@ source 'https://rubygems.org'
 gem 'bcrypt'
 gem 'pagy'
 gem 'rake'
+gem 'robocop', require: false
 gem 'sinatra'
 gem 'sinatra-activerecord'
 gem 'sinatra-contrib'
@@ -16,16 +17,19 @@ group :production do
   gem 'pg'
 end
 
-group :development, :test do
+group :development do
   gem 'byebug'
   gem 'faker'
+  gem 'shotgun'
+  gem 'slim_lint'
+  gem 'sqlite3'
+end
+
+group :test do
+  gem 'codecov', require: false
   gem 'minitest'
   gem 'minitest-reporters'
   gem 'rack-test'
-  gem 'robocop', require: false
-  gem 'shotgun'
   gem 'simplecov'
   gem 'simplecov-console'
-  gem 'slim_lint'
-  gem 'sqlite3'
 end

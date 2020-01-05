@@ -1,5 +1,9 @@
 ### JustNoteThis
 
+[![Requirements Status](https://requires.io/github/bergpb/justnotethis/requirements.svg?branch=master)](https://requires.io/github/bergpb/justnotethis/requirements/?branch=master)
+[![Coverage](https://codecov.io/gh/bergpb/justnotethis/branch/master/graph/badge.svg)](https://codecov.io/gh/bergpb/justnotethis)
+[![Maintainability](https://api.codeclimate.com/v1/badges/3864ddc62c5a20293e0d/maintainability)](https://codeclimate.com/github/bergpb/justnotethis/maintainability)
+[![Build Status](https://travis-ci.org/bergpb/justnotethis.svg?branch=master)](https://travis-ci.org/bergpb/justnotethis)
 [![Actions Status](https://github.com/bergpb/justnotethis/workflows/Ruby/badge.svg)](https://github.com/bergpb/justnotethis/actions)
 
 - A note app made with Ruby and Sinatra.

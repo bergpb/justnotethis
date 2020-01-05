@@ -1,13 +1,16 @@
 # frozen_string_literal: true
 
+
 require 'simplecov'
 require 'simplecov-console'
+require 'codecov'
 
 SimpleCov.start do
   SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new(
     [
       SimpleCov::Formatter::HTMLFormatter,
-      SimpleCov::Formatter::Console
+      SimpleCov::Formatter::Console,
+      SimpleCov::Formatter::Codecov
     ]
   )
 end
