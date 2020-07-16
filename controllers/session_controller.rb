@@ -10,8 +10,7 @@ route :get, :post, '/login' do
     end
   elsif method == 'POST'
     user = User.find_by('username = ?', params[:username])
-    auth_user = user.authenticate(params[:password])
-    if user && auth_user
+    if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       flash[:success] = "Welcome back #{user.username}."
       redirect '/'
