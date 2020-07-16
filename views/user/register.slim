@@ -1,13 +1,13 @@
 form method="post" action="/register"
   .columns.is-mobile
-    .column.is-4-desktop.is-offset-4-desktop.is-6-tablet.is-offset-3-tablet.is-12-mobile
+    .column.is-4-desktop.is-offset-4-desktop.is-6-tablet.is-offset-3-tablet.is-8-mobile.is-offset-2-mobile
       - unless errors.nil?
-        .notification.is-warning
+        div.notification.is-warning
           button.delete
-          - errors.each do |_, msg|
+          - errors.each do |attr, msg|
             li 
               small = msg
-      .title.is-4 Register
+      .title.has-text-centered.is-4 Register
       .field.control.has-icons-left.has-icons-right
         input.input.is-primary type="text" name="username" placeholder="Username" required=""
         span.icon.is-small.is-left: i.fas.fa-user
@@ -19,7 +19,7 @@ form method="post" action="/register"
         span.icon.is-small.is-left: i.fas.fa-lock
       .field.control.has-icons-left.has-icons-right
         input.input.is-primary type="password" name="check_password" placeholder="Check Password" required=""
-        span.icon.is-small.is-left: i.fas.fa-loc
+        span.icon.is-small.is-left: i.fas.fa-lock
   .columns.is-mobile
     .column.has-text-centered
       input.button.is-primary type="submit" value="Register"
