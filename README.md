@@ -1,10 +1,6 @@
 ### JustNoteThis
 
-[![Build Status](https://travis-ci.org/bergpb/justnotethis.svg?branch=master)](https://travis-ci.org/bergpb/justnotethis)
 [![Actions Status](https://github.com/bergpb/justnotethis/workflows/Ruby/badge.svg)](https://github.com/bergpb/justnotethis/actions)
-[![Requirements Status](https://requires.io/github/bergpb/justnotethis/requirements.svg?branch=master)](https://requires.io/github/bergpb/justnotethis/requirements/?branch=master)
-[![Coverage](https://codecov.io/gh/bergpb/justnotethis/branch/master/graph/badge.svg)](https://codecov.io/gh/bergpb/justnotethis)
-[![Maintainability](https://api.codeclimate.com/v1/badges/3864ddc62c5a20293e0d/maintainability)](https://codeclimate.com/github/bergpb/justnotethis/maintainability)
 
 - A note app made with Ruby and Sinatra.
 - See demo here: [https://justnotethis.herokuapp.com](https://justnotethis.herokuapp.com).
@@ -12,9 +8,11 @@
 
 Instructions:
 - Clone this app,
-- Install dependencies with ```bundle --without production```,
-- Run db migrations and seeders ```RACK_ENV=development rake db:create db:migrate db:seed```,
-- Start app in development mode: ```RACK_ENV=development rake serve```.
+- Enter in project folder,
+- Set default ruby: ```rvm use ruby-2.6.5```,
+- Install dependencies with ```bundle```,
+- Run db migrations and seeders ```make migrate```,
+- Start app in development mode: ```make serve```.
 
 
 Generating a new migration:
@@ -24,4 +22,4 @@ Generating a new migration:
 
 
 Running tests:
-- Running tests: ```RACK_ENV=test rake test```
+- Running tests: ```make test```
