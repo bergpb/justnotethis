@@ -54,9 +54,11 @@
   br
 
 - else
-  - if search_for && notes.all.empty?
-    h3.title.is-4 No results for search "#{search_for}".
-    a.button.is-primary href="#{back}" Back
-  - else
-    h4.title.is-6 Ops! Nothing here, create a new note.
-    a.button.is-primary href="/new" New Note
+  .columns.is-mobile
+    .column.has-text-centered.is-4-desktop.is-offset-4-desktop.is-6-tablet.is-offset-3-tablet.is-8-mobile.is-offset-2-mobile
+      - if search_for && notes.all.empty?
+        h3.title.is-4 No results for search "#{search_for}".
+        a.button.is-primary href="#{back}" Back
+      - else
+        h4.title.is-6 Ops! Nothing here, create a new note.
+        a.button.is-primary href="/new" New Note

@@ -22,9 +22,11 @@ html
     == slim(:"partials/_navbar")
     section.section
       .container
-        - flash.keys.each do |type|
-          div class=["notification is-#{type}"]
-            button.delete
-            p = flash[type]
+        .columns.is-mobile
+          .column.is-4-desktop.is-offset-4-desktop.is-6-tablet.is-offset-3-tablet.is-8-mobile.is-offset-2-mobile
+            - flash.keys.each do |type|
+              div class=["notification is-#{type}"]
+                button.delete
+                p = flash[type]
         == yield
     == slim(:"partials/_footer")
