@@ -6,6 +6,7 @@ require 'simplecov-console'
 require 'codecov'
 
 SimpleCov.start do
+  add_filter 'config/environments.rb'
   SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new(
     [
       SimpleCov::Formatter::HTMLFormatter,
