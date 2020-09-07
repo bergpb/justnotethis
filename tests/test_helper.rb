@@ -7,13 +7,21 @@ require 'codecov'
 
 SimpleCov.start do
   add_filter 'config/environments.rb'
-  SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new(
-    [
-      SimpleCov::Formatter::HTMLFormatter,
-      SimpleCov::Formatter::Console,
-      SimpleCov::Formatter::Codecov
-    ]
-  )
+  if ENV['CI']
+    formatter SimpleCov::Formatter::MultiFormatter.new(
+      [
+        SimpleCov::Formatter::Console,
+        SimpleCov::Formatter::Codecov
+      ]
+    )
+  else
+    formatter SimpleCov::Formatter::MultiFormatter.new(
+      [
+        SimpleCov::Formatter::HTMLFormatter,
+        SimpleCov::Formatter::Console,
+      ]
+    )
+  end
 end
 
 require 'minitest/autorun'
