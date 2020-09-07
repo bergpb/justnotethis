@@ -52,8 +52,6 @@ GEM
     rake (13.0.1)
     regexp_parser (1.7.1)
     rexml (3.2.4)
-    robocop (0.1.1)
-      rack
     rubocop (0.90.0)
       parallel (~> 1.10)
       parser (>= 2.7.1.1)
@@ -128,7 +126,7 @@ DEPENDENCIES
   pg
   rack-test
   rake
-  robocop
+  rubocop
   shotgun
   simplecov
   simplecov-console

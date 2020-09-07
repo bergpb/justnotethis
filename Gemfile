@@ -19,10 +19,10 @@ end
 group :development do
   gem 'byebug'
   gem 'faker'
-  gem 'robocop', require: false
   gem 'shotgun'
   gem 'slim_lint'
   gem 'sqlite3'
+  gem 'rubocop', require: false
 end
 
 group :test do
