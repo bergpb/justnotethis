@@ -2,6 +2,8 @@
 
 source 'https://rubygems.org'
 
+ruby "2.7.3"
+
 gem 'bcrypt'
 gem 'pagy'
 gem 'rake'
