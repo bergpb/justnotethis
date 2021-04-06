@@ -7,7 +7,7 @@ require File.dirname(__FILE__) + '/app'
 
 desc 'Run server with Shotgun and Thin'
 task :serve do
-  sh 'shotgun config.ru'
+  sh 'rerun "rackup --host 0.0.0.0 config.ru"'
 end
 
 desc 'Run Slim linter'

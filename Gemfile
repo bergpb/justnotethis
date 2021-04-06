@@ -19,7 +19,7 @@ end
 group :development do
   gem 'byebug'
   gem 'faker'
-  gem 'shotgun'
+  gem 'rerun'
   gem 'slim_lint'
   gem 'sqlite3'
   gem 'rubocop', require: false
