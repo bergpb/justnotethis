@@ -15,7 +15,7 @@ range = case ENV['RACK_ENV']
 
 User.create(username: 'admin',
             email: 'admin@gmail.com',
-            password: '123456')
+            password: 'admin')
 
 range.each do
   Note.create(title: TvShows::NewGirl.character,
