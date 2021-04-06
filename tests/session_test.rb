@@ -11,7 +11,7 @@ class SessionsTests < Minitest::Test
   end
 
   def test_login_with_user
-    post '/login', username: 'admin', password: '123456'
+    post '/login', username: 'admin', password: 'admin1234'
     follow_redirect!
     get '/login'
     assert_equal last_response.status, 302
@@ -20,7 +20,7 @@ class SessionsTests < Minitest::Test
   end
 
   def test_login_success
-    post '/login', username: 'admin', password: '123456'
+    post '/login', username: 'admin', password: 'admin1234'
     assert_equal last_response.status, 302
     assert_includes last_request.env['rack.session'][:flash][:success],
                     'Welcome back'
@@ -29,7 +29,7 @@ class SessionsTests < Minitest::Test
   end
 
   def test_login_failed
-    post '/login', username: 'admin', password: 'admin'
+    post '/login', username: 'admin', password: '123456'
     assert_equal last_response.status, 302
     assert_equal last_request.env['rack.session'][:flash][:warning],
                  'User or password incorrect.'

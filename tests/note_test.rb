@@ -4,14 +4,14 @@ require File.expand_path(File.join('..', 'tests', 'test_helper'), __dir__)
 
 class NoteTests < Minitest::Test
   def do_login
-    post '/login', username: 'admin', password: '123456'
+    post '/login', username: 'admin', password: 'admin1234'
     follow_redirect!
     @user_id = last_request.env['rack.session'][:user_id]
   end
 
   def create_note
-    post '/new', title: 'admin',
-                 description: '123456',
+    post '/new', title: 'Some Title',
+                 description: 'Some description',
                  user_id: @user_id
   end
 
@@ -67,8 +67,8 @@ class NoteTests < Minitest::Test
 
   def test_editing_note
     do_login
-    post "/edit/#{return_id}", title: 'admin',
-                               description: '123456',
+    post "/edit/#{return_id}", title: 'Some Title',
+                               description: 'Some description',
                                user_id: @user_id
     assert_equal last_response.status, 302
     assert_equal last_request.env['rack.session'][:flash][:success],
@@ -79,8 +79,8 @@ class NoteTests < Minitest::Test
 
   def test_edit_note_not_found
     do_login
-    post '/edit/12', title: 'admin',
-                     description: '123456',
+    post '/edit/12', title: 'Some Title',
+                     description: 'Some description',
                      user_id: @user_id
     assert_equal last_response.status, 302
     assert_equal last_request.env['rack.session'][:flash][:warning],
