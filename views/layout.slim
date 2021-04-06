@@ -11,6 +11,7 @@ html
     meta content="width=device-width, initial-scale=1.0" name="viewport"
 
     link rel="stylesheet" href="/css/bulma.min.css"
+    link rel="stylesheet" id="dark-sheet" href="/css/bulma-prefers-dark.min.css"
     link rel="stylesheet" href="/css/sweetalert2.min.css"
     link rel="stylesheet" href="/css/custom.css"
     link rel="stylesheet" href="/css/fontawesome/css/all.min.css"
@@ -19,6 +20,10 @@ html
     script src="/js/sweetalert2.all.min.js"
     script src="/js/custom.js"
   body
+    javascript:
+      if(window.localStorage.getItem('theme') == "light"){
+        document.getElementById("dark-sheet").remove()
+      }
     == slim(:"partials/_navbar")
     section.section
       .container

@@ -58,3 +58,18 @@ function showSwLink(title, type, showCancel, textConfirm, colorConfirm, link){
     }
   });
 }
+
+function toggle(){
+  let darkLink = document.getElementById('dark-sheet');
+  if(darkLink){
+    darkLink.remove();
+    window.localStorage.setItem('theme', 'light');
+  }else{
+    darkLink = document.createElement('link');
+    darkLink.rel = 'stylesheet';
+    darkLink.id = 'dark-sheet';
+    darkLink.href = '/css/bulma-prefers-dark.min.css'
+    document.head.appendChild(darkLink);
+    window.localStorage.setItem('theme', 'dark');
+  }
+}
