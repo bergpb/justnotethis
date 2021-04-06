@@ -13,7 +13,7 @@ jobs:
     - name: Set up Ruby
       uses: actions/setup-ruby@v1
       with:
-        ruby-version: 2.6.x
+        ruby-version: 2.7.3
     
     - name: Install SQLite
       run: |
