@@ -10,6 +10,8 @@
 - See demo here: [https://justnotethis.herokuapp.com](https://justnotethis.herokuapp.com).
 - You can use user: justnotethis and password: justnotethis to test application.
 
+- Using `rbenv` for ruby version management: [https://github.com/rbenv/rbenv](https://github.com/rbenv/rbenv)
+
 Instructions:
 - Clone this app,
 - Enter in project folder,
