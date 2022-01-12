@@ -13,8 +13,8 @@ jobs:
     - name: Set up Ruby
       uses: actions/setup-ruby@v1
       with:
-        ruby-version: 2.7.2
-    
+        ruby-version: 2.7.1
+
     - name: Install SQLite
       run: |
         sudo apt-get install sqlite3 libsqlite3-dev

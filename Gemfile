@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-ruby "2.7.2"
+ruby "2.7.1"
 
 gem 'bcrypt'
 gem 'pagy'
@@ -13,6 +13,8 @@ gem 'sinatra-contrib'
 gem 'sinatra-flash'
 gem 'slim'
 gem 'thin'
+
+gem "rexml", ">= 3.2.5"
 
 group :production do
   gem 'pg'
